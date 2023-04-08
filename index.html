@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="">
+    <title>Kalkulator Poin FIFA</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Kalkulator poin FIFA</h1>
+        <label for="old-point-team-a">Poin awal tim A: </label>
+        <input type="text" id="old-point-team-a">
+        <label for="old-point-team-b">Poin awal tim B: </label>
+        <input type="text" id="old-point-team-b">
+        <input type="radio" name="match-result" id="win-result" value="1">
+        <label for="win-state">Tim A menang</label>
+        <input type="radio" name="match-result" id="draw-result" value="0.5">
+        <label for="draw-state">Seri</label>
+        <input type="radio" name="match-result" id="lose-result" value="0">
+        <label for="lose-state">Tim A kalah</label>
+        <input type="checkbox" name="ko-round-result" id="ko-round">
+        <label for="ko-round">Babak penyisihan (mulai dari QF dst)</label>
+        <input type="checkbox" name="penalty-shoot-result" id="penalty-shoot">
+        <label for="penalty-shoot">Tendangan penalti</label>
+        <label for="match-category">Kategori pertandingan: </label>
+        <select name="match-category" id="match-category" size="5">
+            <option value="-1" disabled> --- Pilih kategori --- </option>
+            <option value="5">Pertandingan persahabatan diluar kalender FIFA matchday</option>
+            <option value="10">Pertandingan persahabatan didalam kalender FIFA matchday</option>
+            <option value="15">Babak grup kompetisi Nations League</option>
+            <option value="25">Babak play-off dan final kompetisi Nations League</option>
+            <option value="25">Babak kualifikasi kejuaraan konfederasi dan piala dunia</option>
+            <option value="35">Babak grup kejuaraan konfederasi sampai perempatfinal</option>
+            <option value="40">Babak perempatfinal kejuaraan konfederasi sampai seterusnya; 
+                Semua pertandingan FIFA Confederation Cup
+            </option>
+            <option value="50">Babak grup piala dunia sampai perempatfinal</option>
+            <option value="60">Babak perempatfinal piala dunia sampai seterusnya</option>
+        </select>
+    </div>
+</body>
+</html>
