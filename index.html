@@ -4,26 +4,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <title>Kalkulator Poin FIFA</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container d-flex flex-column">
         <h2>Kalkulator poin FIFA</h1>
-        <label for="old-point-team-a">Poin awal tim A: </label>
-        <input type="text" id="old-point-team-a">
-        <label for="old-point-team-b">Poin awal tim B: </label>
-        <input type="text" id="old-point-team-b">
-        <input type="radio" name="match-result" id="win-result" value="1">
-        <label for="win-state">Tim A menang</label>
-        <input type="radio" name="match-result" id="draw-result" value="0.5">
-        <label for="draw-state">Seri</label>
-        <input type="radio" name="match-result" id="lose-result" value="0">
-        <label for="lose-state">Tim A kalah</label>
-        <input type="checkbox" name="ko-round-result" id="ko-round">
-        <label for="ko-round">Babak penyisihan (mulai dari QF dst)</label>
-        <input type="checkbox" name="penalty-shoot-result" id="penalty-shoot">
-        <label for="penalty-shoot">Tendangan penalti</label>
+        <div class="d-flex flex-column ">
+            <div>
+                <label for="old-point-team-a">Poin awal tim A: </label>
+                <input type="text" id="old-point-team-a">
+            </div>
+            <div>
+                <label for="old-point-team-b">Poin awal tim B: </label>
+                <input type="text" id="old-point-team-b">
+            </div>
+        </div>
+        <div class="d-flex flex-column">
+            <div>
+                <input type="radio" name="match-result" id="win-result" value="1">
+                <label for="win-state">Tim A menang</label>
+            </div>
+            <div>
+                <input type="radio" name="match-result" id="draw-result" value="0.5">
+                <label for="draw-state">Seri</label>
+            </div>
+            <div>
+                <input type="radio" name="match-result" id="lose-result" value="0">
+                <label for="lose-state">Tim A kalah</label>
+            </div>
+            
+        </div>
+        <div>
+            <div>
+                <input type="checkbox" name="ko-round-result" id="ko-round">
+                <label for="ko-round">Babak penyisihan (mulai dari QF dst)</label>
+            </div>
+            <div>
+                <input type="checkbox" name="penalty-shoot-result" id="penalty-shoot">
+                <label for="penalty-shoot">Tendangan penalti</label>
+            </div>
+        </div>
+        
+        
         <label for="match-category">Kategori pertandingan: </label>
         <select name="match-category" id="match-category" size="5">
             <option value="-1" disabled> --- Pilih kategori --- </option>

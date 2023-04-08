@@ -1,0 +1,6 @@
+.container{
+    margin: auto;
+    width: 640px;
+    min-height: 800px;
+    gap: 10px
+}
