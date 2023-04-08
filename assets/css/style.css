@@ -1,6 +1,13 @@
 .container{
-    margin: auto;
+    margin: 20px auto;
     width: 640px;
-    min-height: 800px;
-    gap: 10px
+    min-height: 480px;
+    gap: 10px;
+    border: 2px solid black;
+    padding: 20px;
+    background-color: rgb(192, 205, 50);
+}
+
+div h2{
+    text-align: center;
 }
