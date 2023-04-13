@@ -76,6 +76,7 @@ div h2{
 .options-container.active{
     max-width: 100%;
     position: absolute;
+    bottom: 5px;
     z-index: 1;
     max-height: 160px;
     overflow-y: scroll;
