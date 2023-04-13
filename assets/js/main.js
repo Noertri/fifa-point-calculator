@@ -38,7 +38,7 @@ optionsBtn.addEventListener("click", () => {
             let optionLabelText = option.querySelector("label").innerText.trim();
             optionsBtnElement.innerText = optionLabelText;
             let optionItem = option.querySelector("input");
-
+                
             if (optionItem.checked) {
                 data["matchCoeff"] = Number(optionItem.value);
                 let coeffValue = document.querySelector(".match-coefficient-value");
