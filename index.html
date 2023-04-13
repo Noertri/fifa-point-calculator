@@ -9,18 +9,18 @@
     <title>Kalkulator Poin FIFA</title>
 </head>
 <body>
-    <div class="container d-flex flex-column flex-wrap flex-shrink-1">
+    <div class="container d-flex flex-column">
         <div>
-            <h2>Kalkulator Poin FIFA</h1> 
+            <h2>Kalkulator Poin FIFA Online</h1> 
         </div>
 
-        <div class="d-flex flex-column" style="gap: 10px;" id="initial-points-wrapper">
-            <div class="d-flex align-items-center flex-gap">
-                <label for="old-point-team-a">Poin awal tim A: </label>
+        <div class="d-flex flex-column align-items-start" style="gap: 10px;" id="initial-points-wrapper">
+            <div class="d-flex align-items-center flex-gap flex-shrink-1 flex-wrap">
+                <label class="input-point-label" for="old-point-team-a">Poin awal tim A: </label>
                 <input class="input-point" type="text" id="old-point-team-a">
             </div>
-            <div class="d-flex align-items-center flex-gap">
-                <label for="old-point-team-b">Poin awal tim B: </label>
+            <div class="d-flex align-items-center flex-gap flex-shrink-1 flex-wrap">
+                <label class="input-point-label" for="old-point-team-b">Poin awal tim B: </label>
                 <input class="input-point" type="text" id="old-point-team-b">
             </div>
         </div>
@@ -42,20 +42,20 @@
                 </div>
             </div>
             
-            <div id="additional-rules-wrapper">
-                <div class="d-flex align-items-center flex-gap">
-                    <input type="checkbox" name="ko-round-result" id="ko-round">
+            <div id="additional-rules-wrapper d-flex">
+                <div class="d-flex align-items-center flex-gap flex-wrap">
+                    <input type="checkbox" name="ko-round-result" id="ko-round" value="true">
                     <label for="ko-round">Babak penyisihan (mulai dari QF dst)</label>
                 </div>
-                <div class="d-flex align-items-center flex-gap">
-                    <input type="checkbox" name="penalty-shoot-result" id="penalty-shoot">
+                <div class="d-flex align-items-center flex-gap flex-wrap">
+                    <input type="checkbox" name="penalty-shoot-result" id="penalty-shoot" value="0.75">
                     <label for="penalty-shoot">Tendangan penalti</label>
                 </div>
             </div>
             
         </div>
 
-        <div>
+        <div class="select-box-wrapper">
             <div class="options-button">
                 <span>Pilih kategori pertandingan</span>
             </div>
@@ -97,6 +97,9 @@
             </div>    
         </div>
         <span class="match-coefficient-value">Koefisien pertandingan: 0</span>
+        <div class="submit-btn-wrapper d-flex flex-column align-items-center">
+            <button class="btn btn-primary flex-shrink-1" type="button">Submit</button>
+        </div>
     </div>
     <script src="assets/js/main.js"></script>
 </body>
