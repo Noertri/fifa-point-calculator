@@ -28,10 +28,10 @@ optionsList.forEach(option => {
 let data = {
     oldPointTeamA: 0.0,
     oldPointTeamB: 0.0,
-    matchResult: 0,
+    matchResult: -1,
     kickOffRound: false,
     pso: false,
-    matchCoeff: 5
+    matchCoeff: 0
 };
 
 optionsBtn.addEventListener("click", () => {
@@ -96,9 +96,29 @@ submitBtn.addEventListener("click", e =>{
 
 
 function calcPoints(matchData) {
-    if (matchData.matchResult === 1 && matchData.kickOffRound === true && matchData.pso === true){
-        console.log(matchData);
-    }else if (matchData.matchResult === 1 && matchData.kickOffRound === true) {
-        console.log(matchData);
+
+    switch (matchData.matchResult) {
+        case 1:
+            if (matchData.kickOffRound === true && matchData.pso === true) {
+                console.log("ok");
+            }else if (matchData.kickOffRound === true) {
+                console.log("siap");
+            }else if (matchData.kickOffRound === false && matchData.pso === false) {
+                console.log("ok, siap");
+            }
+            break
+        case 0.5:
+            console.log(matchData);
+            break
+        case 0:
+            if (matchData.kickOffRound === true && matchData.pso === true) {
+                console.log("ok");
+            }else if (matchData.kickOffRound === true) {
+                console.log("siap");
+            }else if (matchData.kickOffRound === false && matchData.pso === false) {
+                console.log("ok, siap");
+            }
+            break
     }
+    
 }
