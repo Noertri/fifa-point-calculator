@@ -61,10 +61,10 @@ optionsList.forEach(option => {
     })
 })
 
-matchResults.forEach(btn => {
-    btn.addEventListener("click", e => {
-        if (btn.checked) {
-            data["matchResult"] = Number(btn.value);
+matchResults.forEach(radioBtn => {
+    radioBtn.addEventListener("click", e => {
+        if (radioBtn.checked) {
+            data["matchResult"] = radioBtn.value;
         }
     })
 })
@@ -96,29 +96,29 @@ submitBtn.addEventListener("click", e =>{
 
 
 function calcPoints(matchData) {
+    let drA = matchData.oldPointTeamA - matchData.oldPointTeamB;
+    let drB = matchData.oldPointTeamB - matchData.oldPointTeamA;
 
+    let weA = 1/(10**(-1*(drA/600))+1);
+    let weB = 1/(10**(-1*(drB/600))+1);
+
+    matchData.weA = weA;
+    matchData.weB = weB;
+    
     switch (matchData.matchResult) {
-        case 1:
-            if (matchData.kickOffRound === true && matchData.pso === true) {
-                console.log("ok");
-            }else if (matchData.kickOffRound === true) {
-                console.log("siap");
-            }else if (matchData.kickOffRound === false && matchData.pso === false) {
-                console.log("ok, siap");
-            }
+        case "win":
+            matchData.newPointTeamA = matchData.oldPointTeamA + matchData.matchCoeff*(1-weA);
+            matchData.newPointTeamB = matchData.oldPointTeamA + matchData.matchCoeff*(0-weB);
             break
-        case 0.5:
-            console.log(matchData);
+        case "draw":
+            matchData.newPointTeamA = matchData.oldPointTeamA + matchData.matchCoeff*(0.5-weA);
+            matchData.newPointTeamB = matchData.oldPointTeamA + matchData.matchCoeff*(0.5-weB);
             break
-        case 0:
-            if (matchData.kickOffRound === true && matchData.pso === true) {
-                console.log("ok");
-            }else if (matchData.kickOffRound === true) {
-                console.log("siap");
-            }else if (matchData.kickOffRound === false && matchData.pso === false) {
-                console.log("ok, siap");
-            }
+        case "lose":
+            matchData.newPointTeamA = matchData.oldPointTeamA + matchData.matchCoeff*(0-weA);
+            matchData.newPointTeamB = matchData.oldPointTeamA + matchData.matchCoeff*(1-weB);
             break
     }
     
+    console.log(matchData);
 }
