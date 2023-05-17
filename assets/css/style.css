@@ -9,12 +9,12 @@ body {
 
 .container{
     margin: 50px auto;
-    max-width: 420px;
+    max-width: 480px;
     min-width: 320px;
     /* min-height: 480px; */
     gap: 10px;
     border: 2px solid black;
-    padding: 20px;
+    padding: 35px;
     background-color: white;
 }
 
