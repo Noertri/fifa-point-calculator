@@ -107,16 +107,32 @@ function calcPoints(matchData) {
     
     switch (matchData.matchResult) {
         case "win":
-            matchData.newPointTeamA = matchData.oldPointTeamA + matchData.matchCoeff*(1-weA);
-            matchData.newPointTeamB = matchData.oldPointTeamA + matchData.matchCoeff*(0-weB);
+            if (matchData.kickOffRound && matchData.pso) {
+                matchData.newPointTeamA = matchData.oldPointTeamA + matchData.matchCoeff*(0.75-weA);
+                matchData.newPointTeamB = matchData.oldPointTeamB + matchData.matchCoeff*(0.5-weB);
+            } else if (matchData.kickOffRound) {
+                matchData.newPointTeamA = matchData.oldPointTeamA + matchData.matchCoeff*(1-weA);
+                matchData.newPointTeamB = matchData.oldPointTeamB;
+            } else {
+                matchData.newPointTeamA = matchData.oldPointTeamA + matchData.matchCoeff*(1-weA);
+                matchData.newPointTeamB = matchData.oldPointTeamB + matchData.matchCoeff*(0-weB);
+            }
             break
         case "draw":
             matchData.newPointTeamA = matchData.oldPointTeamA + matchData.matchCoeff*(0.5-weA);
-            matchData.newPointTeamB = matchData.oldPointTeamA + matchData.matchCoeff*(0.5-weB);
+            matchData.newPointTeamB = matchData.oldPointTeamB + matchData.matchCoeff*(0.5-weB);
             break
         case "lose":
-            matchData.newPointTeamA = matchData.oldPointTeamA + matchData.matchCoeff*(0-weA);
-            matchData.newPointTeamB = matchData.oldPointTeamA + matchData.matchCoeff*(1-weB);
+            if (matchData.kickOffRound && matchData.pso) {
+                matchData.newPointTeamA = matchData.oldPointTeamA + matchData.matchCoeff*(0.5-weA);
+                matchData.newPointTeamB = matchData.oldPointTeamB + matchData.matchCoeff*(0.75-weB);
+            } else if (matchData.kickOffRound) {
+                matchData.newPointTeamA = matchData.oldPointTeamA;
+                matchData.newPointTeamB = matchData.oldPointTeamB + matchData.matchCoeff*(1-weB);
+            } else {
+                matchData.newPointTeamA = matchData.oldPointTeamA + matchData.matchCoeff*(0-weA);
+                matchData.newPointTeamB = matchData.oldPointTeamB + matchData.matchCoeff*(1-weB);
+            }
             break
     }
     
