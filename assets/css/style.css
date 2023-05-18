@@ -36,6 +36,7 @@ div h2{
 
 .input-point-label {
     max-width: 40%;
+    margin-right: 5px;
 }
 
 .flex-gap{
@@ -95,4 +96,26 @@ div h2{
 
 .submit-btn-wrapper button {
     max-width: 100px;
+}
+
+.result-wrapper {
+    max-width: 100%;
+    gap: 5px;
+}
+
+/* .result-wrapper.off {
+    display: none;
+} */
+
+.result-wrapper p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.result-wrapper .new-points-wrapper .name{
+    min-width: 33%;
+}
+
+.result-wrapper .new-points-wrapper .new-points{
+    min-width: 33%;
 }
