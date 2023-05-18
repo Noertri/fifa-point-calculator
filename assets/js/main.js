@@ -25,7 +25,7 @@ optionsList.forEach(option => {
     optionRadioBtn.checked = false;
 })
 
-// resultWrapper.classList.add("off");
+resultWrapper.classList.add("off");
 
 let data = {
     oldPointTeamA: 0.0,
@@ -112,42 +112,64 @@ function calcPoints(matchData) {
     let weA = 1/(10**(-1*(drA/600))+1);
     let weB = 1/(10**(-1*(drB/600))+1);
 
-    matchData.weA = parseFloat(weA.toFixed(2));
-    matchData.weB = parseFloat(weB.toFixed(2));
-    
+    resultWrapper.classList.remove("off");
+    resultWrapper.classList.add("d-flex", "flex-column", "on")
+    let pTag = resultWrapper.querySelector("p");
+    pTag.innerText = `Koefisien pertandingan = ${matchData.matchCoeff}`;
+    let newPointTeamA = resultWrapper.querySelector(".new-point.team-a");
+    let newPointTeamB = resultWrapper.querySelector(".new-point.team-b");
+    let diffPointTeamAElem = resultWrapper.querySelector(".diff-point.team-a");
+    let diffPointTeamBElem = resultWrapper.querySelector(".diff-point.team-b");
+    let diffPointTeamA;
+    let diffPointTeamB;
+
     switch (matchData.matchResult) {
         case "win":
             if (matchData.kickOffRound && matchData.pso) {
-                matchData.newPointTeamA = matchData.oldPointTeamA + matchData.matchCoeff*(0.75-matchData.weA);
-                matchData.newPointTeamB = matchData.oldPointTeamB + matchData.matchCoeff*(0.5-matchData.weB);
+                diffPointTeamA = matchData.matchCoeff*(0.75-parseFloat(weA.toFixed(2)));
+                diffPointTeamB = matchData.matchCoeff*(0.5-parseFloat(weB.toFixed(2)));
+                diffPointTeamAElem.innerText = `+${diffPointTeamA.toFixed(2)}`;
+                diffPointTeamBElem.innerText = `${diffPointTeamB.toFixed(2)}`;
             } else if (matchData.kickOffRound) {
-                matchData.newPointTeamA = matchData.oldPointTeamA + matchData.matchCoeff*(1-matchData.weA);
-                matchData.newPointTeamB = matchData.oldPointTeamB;
+                diffPointTeamA = matchData.matchCoeff*(1-parseFloat(weA.toFixed(2)));
+                diffPointTeamB = 0;
+                diffPointTeamAElem.innerText = `+${diffPointTeamA.toFixed(2)}`;
+                diffPointTeamBElem.innerText = `+${diffPointTeamB.toFixed(2)}`;
             } else {
-                matchData.newPointTeamA = matchData.oldPointTeamA + matchData.matchCoeff*(1-matchData.weA);
-                matchData.newPointTeamB = matchData.oldPointTeamB + matchData.matchCoeff*(0-matchData.weB);
+                diffPointTeamA = matchData.matchCoeff*(1-parseFloat(weA.toFixed(2)));
+                diffPointTeamB = matchData.matchCoeff*(0-parseFloat(weB.toFixed(2)));
+                diffPointTeamAElem.innerText = `+${diffPointTeamA.toFixed(2)}`;
+                diffPointTeamBElem.innerText = `${diffPointTeamB.toFixed(2)}`;
             }
             break
         case "draw":
-            matchData.newPointTeamA = matchData.oldPointTeamA + matchData.matchCoeff*(0.5-matchData.weA);
-            matchData.newPointTeamB = matchData.oldPointTeamB + matchData.matchCoeff*(0.5-matchData.weB);
+            diffPointTeamA = matchData.matchCoeff*(0.5-parseFloat(weA.toFixed(2)));
+            diffPointTeamB = matchData.matchCoeff*(0.5-parseFloat(weB.toFixed(2)));
+            diffPointTeamAElem.innerText = `${diffPointTeamA.toFixed(2)}`;
+            diffPointTeamBElem.innerText = `${diffPointTeamB.toFixed(2)}`;
             break
         case "lose":
             if (matchData.kickOffRound && matchData.pso) {
-                matchData.newPointTeamA = matchData.oldPointTeamA + matchData.matchCoeff*(0.5-matchData.weA);
-                matchData.newPointTeamB = matchData.oldPointTeamB + matchData.matchCoeff*(0.75-matchData.weB);
+                diffPointTeamA = matchData.matchCoeff*(0.5-parseFloat(weA.toFixed(2)));
+                diffPointTeamB = matchData.matchCoeff*(0.75-parseFloat(weB.toFixed(2)));
+                diffPointTeamAElem.innerText = `${diffPointTeamA.toFixed(2)}`;
+                diffPointTeamBElem.innerText = `+${diffPointTeamB.toFixed(2)}`;
             } else if (matchData.kickOffRound) {
-                matchData.newPointTeamA = matchData.oldPointTeamA;
-                matchData.newPointTeamB = matchData.oldPointTeamB + matchData.matchCoeff*(1-matchData.weB);
+                diffPointTeamA = 0;
+                diffPointTeamB = matchData.matchCoeff*(1-parseFloat(weB.toFixed(2)));
+                diffPointTeamAElem.innerText = `+${diffPointTeamA.toFixed(2)}`;
+                diffPointTeamBElem.innerText = `+${diffPointTeamB.toFixed(2)}`;
             } else {
-                matchData.newPointTeamA = matchData.oldPointTeamA + matchData.matchCoeff*(0-matchData.weA);
-                matchData.newPointTeamB = matchData.oldPointTeamB + matchData.matchCoeff*(1-matchData.weB);
+                diffPointTeamA = matchData.matchCoeff*(0-parseFloat(weA.toFixed(2)));
+                diffPointTeamB = matchData.matchCoeff*(1-parseFloat(weB.toFixed(2)));
+                diffPointTeamAElem.innerText = `${diffPointTeamA.toFixed(2)}`;
+                diffPointTeamBElem.innerText = `+${diffPointTeamB.toFixed(2)}`;
             }
             break
     }
     
-    resultWrapper.classList.remove("off");
-    let pTag = document.querySelector("p");
-    pTag.innerText = `Nilai koefisien pertandingan = ${matchData.matchCoeff}`;
-    
+    matchData.newPointTeamA = matchData.oldPointTeamA + parseFloat(diffPointTeamA.toFixed(2));
+    matchData.newPointTeamB = matchData.oldPointTeamB + parseFloat(diffPointTeamB.toFixed(2));
+    newPointTeamA.innerText = `${matchData.newPointTeamA}`;
+    newPointTeamB.innerText = `${matchData.newPointTeamB}`;
 }

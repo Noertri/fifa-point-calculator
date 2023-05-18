@@ -98,24 +98,24 @@ div h2{
     max-width: 100px;
 }
 
-.result-wrapper {
+.result-wrapper.on{
     max-width: 100%;
     gap: 5px;
 }
 
-/* .result-wrapper.off {
+.result-wrapper.off {
     display: none;
-} */
+}
 
 .result-wrapper p {
     margin-top: 0;
     margin-bottom: 0;
 }
 
-.result-wrapper .new-points-wrapper .name{
+.result-wrapper .new-point-wrapper .name{
     min-width: 33%;
 }
 
-.result-wrapper .new-points-wrapper .new-points{
+.result-wrapper .new-point-wrapper .new-point{
     min-width: 33%;
 }
