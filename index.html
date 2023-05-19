@@ -24,32 +24,27 @@
             </div>
         </div>
 
-        <div class="d-flex flex-column" id="match-result-wrapper">
+        <div class="d-flex flex-column match-result-wrapper">
             <div>Hasil pertandingan:</div>
-            <div>
-                <div class="d-flex align-items-center flex-gap">
-                    <input type="radio" name="match-result" id="win-result" value="win">
-                    <label for="win-state">Tim A menang</label>
-                </div>
-                <div class="d-flex align-items-center flex-gap">
-                    <input type="radio" name="match-result" id="draw-result" value="draw">
-                    <label for="draw-state">Seri</label>
-                </div>
-                <div class="d-flex align-items-center flex-gap">
-                    <input type="radio" name="match-result" id="lose-result" value="lose">
-                    <label for="lose-state">Tim A kalah</label>
-                </div>
+            <div class="d-flex align-items-center flex-gap">
+                <input type="radio" name="match-result" id="win-result" value="win">
+                <label for="win-state">Tim A menang</label>
             </div>
-            
-            <div id="additional-rules-wrapper d-flex">
-                <div class="d-flex align-items-center flex-gap flex-wrap">
-                    <input type="checkbox" name="ko-round-result" id="ko-round" value="true">
-                    <label for="ko-round">Babak KO (Knock Out)</label>
-                </div>
-                <div class="d-flex align-items-center flex-gap flex-wrap">
-                    <input type="checkbox" name="penalty-shoot-result" id="penalty-shoot" value="true">
-                    <label for="penalty-shoot">Tendangan penalti</label>
-                </div>
+            <div class="d-flex align-items-center flex-gap">
+                <input type="radio" name="match-result" id="draw-result" value="draw">
+                <label for="draw-state">Seri</label>
+            </div>
+            <div class="d-flex align-items-center flex-gap">
+                <input type="radio" name="match-result" id="lose-result" value="lose">
+                <label for="lose-state">Tim A kalah</label>
+            </div>
+            <div class="d-flex align-items-center flex-gap flex-wrap">
+                <input type="checkbox" name="ko-round-result" id="ko-round" value="true">
+                <label for="ko-round">Babak KO (Knock Out)</label>
+            </div>
+            <div class="d-flex align-items-center flex-gap flex-wrap">
+                <input type="checkbox" name="penalty-shoot-result" id="penalty-shoot" value="true">
+                <label for="penalty-shoot">Tendangan penalti</label>
             </div>
         </div>
 
@@ -95,7 +90,7 @@
                     </div>
                 </div>
             </div>
-            <p>Koefisien pertandingan = 0</p>
+            <div id="match-coeff-value">Koefisien pertandingan = 0</div>
         </div>
 
         <div class="match-expect-wrapper d-flex flex-column">
