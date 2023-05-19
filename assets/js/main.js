@@ -75,9 +75,6 @@ optionsList.forEach(option => {
         let optionRadioBtn = option.querySelector("input");
 
         if (optionRadioBtn.checked) {
-            matchExpectWrapper.classList.remove("off");
-            matchExpectWrapper.classList.add("d-flex", "flex-column");
-
             data["matchCoeff"] = parseFloat(optionRadioBtn.value);
 
             if (oldPointA.value && oldPointB.value){
@@ -141,16 +138,16 @@ function updateMatchExpect(data) {
     let weA = matchExpectation(data.oldPointTeamA, data.oldPointTeamB);
     let weB = matchExpectation(data.oldPointTeamB, data.oldPointTeamA);
     
-    data["weA"] = parseFloat(weA.toFixed(6));
-    data["weB"] = parseFloat(weB.toFixed(6));
+    data["weA"] = parseFloat(weA.toFixed(5));
+    data["weB"] = parseFloat(weB.toFixed(5));
 
     let pTag = matchCoeffWrapper.querySelector("p");
     let weATag = matchExpectWrapper.querySelector(".we-a");
     let weBTag = matchExpectWrapper.querySelector(".we-b");
     
     pTag.innerText = `Koefisien pertandingan = ${data.matchCoeff}`;
-    weATag.innerText = `We tim A = ${weA.toFixed(6)}`;
-    weBTag.innerText = `We tim B = ${weB.toFixed(6)}`; 
+    weATag.innerText = `We tim A = ${weA.toFixed(5)}`;
+    weBTag.innerText = `We tim B = ${weB.toFixed(5)}`; 
 }
 
 function matchExpectation(point1, point2){

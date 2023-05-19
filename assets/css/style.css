@@ -8,22 +8,21 @@ body {
 
 
 .container{
-    margin: 20px auto;
-    max-width: 480px;
-    min-width: 320px;
-    /* min-height: 480px; */
+    margin: 15px auto;
+    max-width: 400px;
     gap: 5px;
     border: 2px solid black;
-    padding: 30px;
+    padding: 20px;
     background-color: white;
 }
 
-div h2{
+h2{
     text-align: center;
 }
 
-#initial-points-wrapper{
+.initial-points-wrapper{
     width: 100%;
+    gap: 5px;
 }
 
 .old-point-wrapper {
@@ -32,7 +31,7 @@ div h2{
 
 .input-point{
     max-width: 60%;
-    padding: 5px;
+    padding: 3px;
 }
 
 .input-point-label {
