@@ -141,8 +141,8 @@ function updateMatchExpect(data) {
     data["weB"] = parseFloat(weB.toFixed(5));
 
     let coeffTag = matchExpectWrapper.querySelector("#match-coeff-value");
-    let weATag = matchExpectWrapper.querySelector("#we-a");
-    let weBTag = matchExpectWrapper.querySelector("#we-b");
+    let weATag = matchExpectWrapper.querySelector(".we-a");
+    let weBTag = matchExpectWrapper.querySelector(".we-b");
     
     coeffTag.innerText = `Koefisien pertandingan = ${data.matchCoeff}`;
     weATag.innerText = `We tim A = ${weA.toFixed(5)}`;

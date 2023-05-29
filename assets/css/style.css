@@ -6,6 +6,7 @@ body {
     box-sizing: border-box;
 }
 
+
 .container{
     margin: 20px auto;
     width: 480px;
@@ -18,11 +19,7 @@ body {
 
 h2{
     text-align: center;
-}
-
-.initial-points-wrapper{
-    width: 100%;
-    gap: 5px;
+    margin-bottom: 30px;
 }
 
 .old-point-wrapper {
@@ -33,6 +30,7 @@ h2{
     max-width: 60%;
     padding: 2px;
     height: max-content;
+    font-size: 14px;
 }
 
 .input-point-label {
@@ -66,6 +64,10 @@ h2{
     height: 100%;
 }
 
+.select-box {
+    width: 100%;
+    position: relative;
+}
 
 .options-container {
     background-color: white;
@@ -74,21 +76,16 @@ h2{
 }
 
 .options-container.active{
-    /* display: flex;
-    flex-direction: column; */
-    width: 360px;
-    max-width: 50%;
-    position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -60%);
-    z-index: 10;
-    height: 300px;
+    max-width: 100%;
+    position: absolute;
+    transform: translate(0, 20%);
+    z-index: 5;
+    max-height: 160px;
     overflow-y: scroll;
-    scrollbar-width: none;
     border: 1px solid black;
-    border-radius: 10px;
-    padding: 12px;
+    scrollbar-width: none;
+    padding: 10px;
+    border-radius: 3px;
     gap: 5px;
 }
 
@@ -100,22 +97,11 @@ h2{
     max-width: 100px;
 }
 
-.result-wrapper.on{
-    max-width: 100%;
-    gap: 5px;
-}
-
 .result-wrapper {
     max-width: 100%;
     border: 1px solid gray;
     margin-top: 5px;
     padding: 10px;
-    gap: 5px;
-}
-
-.result-wrapper p{
-    margin-top: 0;
-    margin-bottom: 0;
     gap: 5px;
 }
 
