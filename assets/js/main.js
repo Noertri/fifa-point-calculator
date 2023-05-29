@@ -10,7 +10,6 @@ const additionalRules2 = document.getElementById("penalty-shoot");
 const submitBtn = document.querySelector("#submit-btn");
 const resultWrapper = document.querySelector(".result-wrapper");
 const matchExpectWrapper = document.querySelector(".match-expect-wrapper");
-const matchCoeffWrapper = document.querySelector(".match-coeff-wrapper");
 
 // inisialisasi
 oldPointA.value = 1840.93;
@@ -64,11 +63,18 @@ oldPointB.addEventListener("change", (e) => {
 optionsBtn.addEventListener("click", () => {
     let toggleClassItems = ["active", "d-flex", "flex-column", "flex-shrink-1"];
     toggleClassItems.map(v => optionsContainer.classList.toggle(v));
+
+    if (oldPointA.value && oldPointB.value){
+        data["oldPointTeamA"] = parseFloat(oldPointA.value);
+        data["oldPointTeamB"] = parseFloat(oldPointB.value);
+    }
+
+    updateMatchExpect(data);
 });
 
 optionsList.forEach(option => {
     option.addEventListener("click", (e) => {
-        let optionsBtnElement = optionsBtn.querySelector("span");
+        let optionsBtnElement = optionsBtn.querySelector("p");
         let optionLabelText = option.querySelector("label").innerText.trim();
         optionsBtnElement.innerText = optionLabelText;
 
@@ -76,17 +82,10 @@ optionsList.forEach(option => {
 
         if (optionRadioBtn.checked) {
             data["matchCoeff"] = parseFloat(optionRadioBtn.value);
-
-            if (oldPointA.value && oldPointB.value){
-                data["oldPointTeamA"] = parseFloat(oldPointA.value);
-                data["oldPointTeamB"] = parseFloat(oldPointB.value);
-            }
-
             updateMatchExpect(data);
-
             optionRadioBtn.addEventListener(
                 "click", (e) => {
-                    let optionsBtnElement = optionsBtn.querySelector("span");
+                    let optionsBtnElement = optionsBtn.querySelector("p");
                     let optionLabelText = option.querySelector("label").innerText.trim();
                     optionsBtnElement.innerText = optionLabelText;
     

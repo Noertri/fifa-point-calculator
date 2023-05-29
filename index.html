@@ -48,52 +48,50 @@
             </div>
         </div>
 
-        <div class="match-coeff-wrapper">
-            <div class="select-box-wrapper d-flex flex-column justify-content-center">
-                <div class="options-button order-2">
-                    <span>Pilih kategori pertandingan</span>
-                </div>
-                <div class="select-box" id="match-categories">
-                    <div class="options-container order-1">
-                        <div class="d-flex align-items-center option-item flex-gap">
-                            <input type="radio" name="option-match" value="5" id="item-1">
-                            <label for="item-1">Pertandingan persahabatan diluar kalender FIFA matchday</label>
-                        </div>
-                        <div class="option-item d-flex align-items-center flex-gap">
-                            <input type="radio" name="option-match" value="10" id="item-2">
-                            <label for="item-2">Pertandingan persahabatan didalam kalender FIFA matchday</label>
-                        </div>
-                        <div class="option-item d-flex align-items-center flex-gap">
-                            <input type="radio" name="option-match" value="15" id="item-3">
-                            <label for="item-3">Babak grup kompetisi Nations League</label>
-                        </div>
-                        <div class="option-item d-flex align-items-center flex-gap">
-                            <input type="radio" name="option-match" value="25" id="item-4">
-                            <label for="item-4">Babak play-off dan final kompetisi Nations League; Babak kualifikasi kejuaraan konfederasi dan piala dunia</label>
-                        </div>
-                        <div class="option-item d-flex align-items-center flex-gap">
-                            <input type="radio" name="option-match" value="35" id="item-5">
-                            <label for="item-1">Babak grup kejuaraan konfederasi sampai perempatfinal</label>
-                        </div>
-                        <div class="option-item d-flex align-items-center flex-gap">
-                            <input type="radio" name="option-match" value="40" id="item-6"> 
-                            <label for="item-6">Babak perempatfinal kejuaraan konfederasi sampai seterusnya; Semua pertandingan FIFA Confederation Cup</label>
-                        </div>
-                        <div class="option-item d-flex align-items-center flex-gap">
-                            <input type="radio" name="option-match" value="50" id="item-7">
-                            <label for="item-7">Babak grup piala dunia sampai perempatfinal</label>
-                        </div>
-                        <div class="option-item d-flex align-items-center flex-gap">
-                            <input type="radio" name="option-match" value="60" id="item-8">
-                            <label for="item-8">Babak perempatfinal piala dunia sampai seterusnya</label>
-                        </div>
+        <div class="select-box-wrapper d-flex flex-column justify-content-center">
+            <div class="options-button order-2">
+                <p>Pilih kategori pertandingan</p>
+            </div>
+            <div class="select-box" id="match-categories">
+                <div class="options-container order-1">
+                    <div class="d-flex align-items-center option-item flex-gap">
+                        <input type="radio" name="option-match" value="5" id="item-1">
+                        <label for="item-1">Pertandingan persahabatan diluar kalender FIFA matchday</label>
+                    </div>
+                    <div class="option-item d-flex align-items-center flex-gap">
+                        <input type="radio" name="option-match" value="10" id="item-2">
+                        <label for="item-2">Pertandingan persahabatan didalam kalender FIFA matchday</label>
+                    </div>
+                    <div class="option-item d-flex align-items-center flex-gap">
+                        <input type="radio" name="option-match" value="15" id="item-3">
+                        <label for="item-3">Babak grup kompetisi Nations League</label>
+                    </div>
+                    <div class="option-item d-flex align-items-center flex-gap">
+                        <input type="radio" name="option-match" value="25" id="item-4">
+                        <label for="item-4">Babak play-off dan final kompetisi Nations League; Babak kualifikasi kejuaraan konfederasi dan piala dunia</label>
+                    </div>
+                    <div class="option-item d-flex align-items-center flex-gap">
+                        <input type="radio" name="option-match" value="35" id="item-5">
+                        <label for="item-1">Babak grup kejuaraan konfederasi sampai perempatfinal</label>
+                    </div>
+                    <div class="option-item d-flex align-items-center flex-gap">
+                        <input type="radio" name="option-match" value="40" id="item-6"> 
+                        <label for="item-6">Babak perempatfinal kejuaraan konfederasi sampai seterusnya; Semua pertandingan FIFA Confederation Cup</label>
+                    </div>
+                    <div class="option-item d-flex align-items-center flex-gap">
+                        <input type="radio" name="option-match" value="50" id="item-7">
+                        <label for="item-7">Babak grup piala dunia sampai perempatfinal</label>
+                    </div>
+                    <div class="option-item d-flex align-items-center flex-gap">
+                        <input type="radio" name="option-match" value="60" id="item-8">
+                        <label for="item-8">Babak perempatfinal piala dunia sampai seterusnya</label>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="match-expect-wrapper d-flex flex-column">
-            <div id="match-coeff-value">Koefisien pertandingan = 0</div>
+            <p id="match-coeff-value">Koefisien pertandingan = 0</p>
             <p class="we-a">We tim A = 0.0</p>
             <p class="we-b">We tim B = 0.0</p>
         </div>
@@ -103,15 +101,15 @@
         </div>
 
         <div class="result-wrapper d-flex flex-column flex-shrink-1">
-            <div class="new-point-wrapper d-flex team-a">
-                <div class="name">Poin baru tim A:</div>
-                <div class="new-point team-a"></div>
-                <div class="diff-point team-a"></div>
+            <div class="new-point-wrapper d-flex justify-content-between team-a">
+                <span class="name">Poin baru tim A:</span>
+                <span class="new-point team-a"></span>
+                <span class="diff-point team-a"></span>
             </div>
-            <div class="new-point-wrapper d-flex team-b">
-                <div class="name">Poin baru tim B:</div>
-                <div class="new-point team-b"></div>
-                <div class="diff-point team-b"></div>
+            <div class="new-point-wrapper d-flex justify-content-between team-b">
+                <span class="name">Poin baru tim B:</span>
+                <span class="new-point team-b"></span>
+                <span class="diff-point team-b"></span>
             </div>
         </div>
     </div>
