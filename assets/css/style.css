@@ -8,8 +8,9 @@ body {
 
 
 .container{
-    margin: 15px auto;
-    max-width: 480px;
+    margin: 20px auto;
+    width: 480px;
+    max-width: 75%;
     gap: 5px;
     border: 2px solid black;
     padding: 20px;
@@ -18,11 +19,7 @@ body {
 
 h2{
     text-align: center;
-}
-
-.initial-points-wrapper{
-    width: 100%;
-    gap: 5px;
+    margin-bottom: 30px;
 }
 
 .old-point-wrapper {
@@ -33,6 +30,7 @@ h2{
     max-width: 60%;
     padding: 2px;
     height: max-content;
+    font-size: 14px;
 }
 
 .input-point-label {
@@ -77,25 +75,18 @@ h2{
     font-size: 14px;
 }
 
-.options-container .option-item {
-    padding: 5px;
-}
-
-/* .options-container .option-item:hover{
-    background-color: rgb(14, 122, 211);
-} */
-
 .options-container.active{
     max-width: 100%;
     position: absolute;
-    bottom: 5px;
-    z-index: 1;
+    transform: translate(0, 20%);
+    z-index: 5;
     max-height: 160px;
     overflow-y: scroll;
     border: 1px solid black;
     scrollbar-width: none;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 3px;
+    gap: 5px;
 }
 
 .options-container.active::-webkit-scrollbar {
@@ -104,11 +95,6 @@ h2{
 
 .submit-btn-wrapper button {
     max-width: 100px;
-}
-
-.result-wrapper.on{
-    max-width: 100%;
-    gap: 5px;
 }
 
 .result-wrapper {
