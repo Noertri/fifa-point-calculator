@@ -10,6 +10,7 @@ const additionalRules2 = document.getElementById("penalty-shoot");
 const submitBtn = document.querySelector("#submit-btn");
 const resultWrapper = document.querySelector(".result-wrapper");
 const matchExpectWrapper = document.querySelector(".match-expect-wrapper");
+const matchCoeffWrapper = document.querySelector(".match-coeff-wrapper");
 
 // inisialisasi
 oldPointA.value = 1840.93;
@@ -63,18 +64,11 @@ oldPointB.addEventListener("change", (e) => {
 optionsBtn.addEventListener("click", () => {
     let toggleClassItems = ["active", "d-flex", "flex-column", "flex-shrink-1"];
     toggleClassItems.map(v => optionsContainer.classList.toggle(v));
-
-    if (oldPointA.value && oldPointB.value){
-        data["oldPointTeamA"] = parseFloat(oldPointA.value);
-        data["oldPointTeamB"] = parseFloat(oldPointB.value);
-    }
-
-    updateMatchExpect(data);
 });
 
 optionsList.forEach(option => {
     option.addEventListener("click", (e) => {
-        let optionsBtnElement = optionsBtn.querySelector("p");
+        let optionsBtnElement = optionsBtn.querySelector("span");
         let optionLabelText = option.querySelector("label").innerText.trim();
         optionsBtnElement.innerText = optionLabelText;
 
@@ -82,10 +76,17 @@ optionsList.forEach(option => {
 
         if (optionRadioBtn.checked) {
             data["matchCoeff"] = parseFloat(optionRadioBtn.value);
+
+            if (oldPointA.value && oldPointB.value){
+                data["oldPointTeamA"] = parseFloat(oldPointA.value);
+                data["oldPointTeamB"] = parseFloat(oldPointB.value);
+            }
+
             updateMatchExpect(data);
+
             optionRadioBtn.addEventListener(
                 "click", (e) => {
-                    let optionsBtnElement = optionsBtn.querySelector("p");
+                    let optionsBtnElement = optionsBtn.querySelector("span");
                     let optionLabelText = option.querySelector("label").innerText.trim();
                     optionsBtnElement.innerText = optionLabelText;
     
@@ -141,8 +142,8 @@ function updateMatchExpect(data) {
     data["weB"] = parseFloat(weB.toFixed(5));
 
     let coeffTag = matchExpectWrapper.querySelector("#match-coeff-value");
-    let weATag = matchExpectWrapper.querySelector("#we-a");
-    let weBTag = matchExpectWrapper.querySelector("#we-b");
+    let weATag = matchExpectWrapper.querySelector(".we-a");
+    let weBTag = matchExpectWrapper.querySelector(".we-b");
     
     coeffTag.innerText = `Koefisien pertandingan = ${data.matchCoeff}`;
     weATag.innerText = `We tim A = ${weA.toFixed(5)}`;
