@@ -6,10 +6,10 @@ body {
     box-sizing: border-box;
 }
 
-
 .container{
-    margin: 15px auto;
-    max-width: 480px;
+    margin: 20px auto;
+    width: 480px;
+    max-width: 75%;
     gap: 5px;
     border: 2px solid black;
     padding: 20px;
@@ -61,15 +61,11 @@ h2{
     font-size: 14px;
 }
 
-.options-button span{
+.options-button p{
     max-width: 100%;
     height: 100%;
 }
 
-.select-box {
-    width: 100%;
-    position: relative;
-}
 
 .options-container {
     background-color: white;
@@ -77,22 +73,27 @@ h2{
     font-size: 14px;
 }
 
-.options-container .option-item {
-    padding: 5px;
-}
-
-.options-container .option-item:hover{
-    background-color: rgb(14, 122, 211);
-}
-
 .options-container.active{
-    max-width: 100%;
-    position: absolute;
-    bottom: 5px;
-    z-index: 1;
-    max-height: 160px;
+    /* display: flex;
+    flex-direction: column; */
+    width: 360px;
+    max-width: 75%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    z-index: 10;
+    height: 300px;
     overflow-y: scroll;
+    scrollbar-width: none;
     border: 1px solid black;
+    border-radius: 10px;
+    padding: 12px;
+    gap: 5px;
+}
+
+.options-container.active::-webkit-scrollbar {
+    display: none;
 }
 
 .submit-btn-wrapper button {
@@ -109,6 +110,12 @@ h2{
     border: 1px solid gray;
     margin-top: 5px;
     padding: 5px;
+}
+
+.result-wrapper p{
+    margin-top: 0;
+    margin-bottom: 0;
+    gap: 5px;
 }
 
 .match-expect-wrapper p {
