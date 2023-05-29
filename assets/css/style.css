@@ -9,7 +9,7 @@ body {
 
 .container{
     margin: 15px auto;
-    max-width: 400px;
+    max-width: 480px;
     gap: 5px;
     border: 2px solid black;
     padding: 20px;
@@ -31,7 +31,8 @@ h2{
 
 .input-point{
     max-width: 60%;
-    padding: 3px;
+    padding: 2px;
+    height: max-content;
 }
 
 .input-point-label {
@@ -128,6 +129,6 @@ h2{
     min-width: 33%;
 }
 
-.match-result-wrapper, .initial-points-wrapper, .match-expect-wrapper, .result-wrapper, #match-coeff-value {
+.match-result-wrapper, .input-point, .match-expect-wrapper, .result-wrapper, #match-coeff-value {
     font-size: 14px;
 }

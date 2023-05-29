@@ -36,8 +36,8 @@ let data = {
     matchCoeff: 0,
     weA: 0.0,
     weB: 0.0,
-    newPointTeamA: 1840.93,
-    newPointTeamB: 1838.45,
+    newPointTeamA: 0.0,
+    newPointTeamB: 0.0,
     diffPointTeamA: 0.0,
     diffPointTeamB: 0.0
 };
@@ -141,7 +141,7 @@ function updateMatchExpect(data) {
     data["weA"] = parseFloat(weA.toFixed(5));
     data["weB"] = parseFloat(weB.toFixed(5));
 
-    let coeffTag = matchCoeffWrapper.querySelector("#match-coeff-value");
+    let coeffTag = matchExpectWrapper.querySelector("#match-coeff-value");
     let weATag = matchExpectWrapper.querySelector(".we-a");
     let weBTag = matchExpectWrapper.querySelector(".we-b");
     
