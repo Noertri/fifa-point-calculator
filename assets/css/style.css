@@ -23,18 +23,22 @@ h2{
 }
 
 .old-point-wrapper {
-    width: 100%;
+    max-width: 100%;
+}
+
+.old-point-wrapper>select{
+    max-width: 40%;
 }
 
 .input-point{
-    max-width: 60%;
+    max-width: 40%;
     padding: 2px;
     height: max-content;
     font-size: 14px;
 }
 
 .input-point-label {
-    max-width: 40%;
+    max-width: 20%;
     margin-right: 5px;
 }
 
