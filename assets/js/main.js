@@ -3,8 +3,8 @@ const optionsList = document.querySelectorAll(".option-item");
 const optionsContainer = document.querySelector(".options-container");
 const selectBox = document.querySelector(".select-box");
 const matchResults = document.querySelectorAll("input[name='match-result']");
-const oldPointA = document.querySelector("#old-point-team-a");
-const oldPointB = document.querySelector("#old-point-team-b");
+// const oldPointA = document.querySelector("#old-point-team-a");
+// const oldPointB = document.querySelector("#old-point-team-b");
 const additionalRules1 = document.getElementById("ko-round");
 const additionalRules2 = document.getElementById("penalty-shoot");
 const submitBtn = document.querySelector("#submit-btn");
@@ -12,8 +12,8 @@ const resultWrapper = document.querySelector(".result-wrapper");
 const matchExpectWrapper = document.querySelector(".match-expect-wrapper");
 
 // inisialisasi
-oldPointA.value = 1840.93;
-oldPointB.value = 1838.45;
+// oldPointA.value = 1840.93;
+// oldPointB.value = 1838.45;
 additionalRules1.checked = false;
 additionalRules2.checked = false;
 
@@ -44,21 +44,29 @@ let data = {
 updateNewPoints(data);
 
 // mulai kode program
-oldPointA.addEventListener("change", (e) => {
-    if (oldPointA.value && oldPointB.value) {
-        data["oldPointTeamA"] = parseFloat(oldPointA.value);
-        data["oldPointTeamB"] = parseFloat(oldPointB.value);
-        updateMatchExpect(data);
-    }
-});
+// oldPointA.addEventListener("change", (e) => {
+//     if (oldPointA.value && oldPointB.value) {
+//         data["oldPointTeamA"] = parseFloat(oldPointA.value);
+//         data["oldPointTeamB"] = parseFloat(oldPointB.value);
+//         updateMatchExpect(data);
+//     }
+// });
 
-oldPointB.addEventListener("change", (e) => {
-    if (oldPointA.value && oldPointB.value) {
-        data["oldPointTeamA"] = parseFloat(oldPointA.value);
-        data["oldPointTeamB"] = parseFloat(oldPointB.value);
-        updateMatchExpect(data);
-    }
-});
+// oldPointB.addEventListener("change", (e) => {
+//     if (oldPointA.value && oldPointB.value) {
+//         data["oldPointTeamA"] = parseFloat(oldPointA.value);
+//         data["oldPointTeamB"] = parseFloat(oldPointB.value);
+//         updateMatchExpect(data);
+//     }
+// });
+
+async function loadCountryList(){
+    let response = await fetch("http://127.0.0.1:5000/fifa-point-calculator/api/countryList?periode=2023-06-29");
+    let items = await response.json();
+    console.log(items);
+} 
+
+loadCountryList();
 
 optionsBtn.addEventListener("click", () => {
     let toggleClassItems = ["active", "d-flex", "flex-column", "flex-shrink-1"];
@@ -74,9 +82,9 @@ optionsBtn.addEventListener("click", () => {
 
 optionsList.forEach(option => {
     option.addEventListener("click", (e) => {
-        let optionsBtnElement = optionsBtn.querySelector("p");
+        // let optionsBtnElement = optionsBtn.querySelector("p");
         let optionLabelText = option.querySelector("label").innerText.trim();
-        optionsBtnElement.innerText = optionLabelText;
+        optionsBtn.innerText = optionLabelText.slice(0, 50)+"...";
 
         let optionRadioBtn = option.querySelector("input");
 
