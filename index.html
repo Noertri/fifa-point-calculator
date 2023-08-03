@@ -16,17 +16,14 @@
         <div class="d-flex flex-column flex-gap input-point-wrapper">
             <div class="d-flex align-items-center flex-gap flex-shrink-1 old-point-wrapper">
                 <label class="input-point-label" for="old-point-team-a">Poin awal tim A:</label>
-                <div name="old-point-team-a" id="old-point-team-a" class="select-country-wrapper">
-                    <div class="select-country-btn">Pilih negara</div>
-                    <div class="country-list"></div>
-                </div>
+                <input type="text" id="country-a" class="input-bar" placeholder="Masukkan nama negara atau kode negara">
+                <input type="text" id="old-point-team-a" class="input-bar" placeholder="Poin lama">
             </div>
             
             <div class="d-flex align-items-center flex-gap flex-shrink-1 old-point-wrapper">
                 <label class="input-point-label" for="old-point-team-b">Poin awal tim B:</label>
-                <div name="old-point-team-b" id="old-point-team-b" class="select-country-wrapper">
-                    <div class="select-country-btn">Pilih negara</div>
-                </div>
+                <input type="text" id="country-b" class="input-bar" placeholder="Masukkan nama negara atau kode negara">
+                <input type="text" id="old-point-team-b" class="input-bar" placeholder="Poin lama">
             </div>
         </div>
         
@@ -101,8 +98,6 @@
         </div>
 
         <div class="match-expect-wrapper d-flex flex-column">
-            <p>Poin awal tim A = 0.0</p>
-            <p>Poin awal tim B = 0.0</p>
             <p id="match-coeff-value">Koefisien pertandingan = 0</p>
             <p class="we-a">We tim A = 0.0</p>
             <p class="we-b">We tim B = 0.0</p>
@@ -125,6 +120,6 @@
             </div>
         </div>
     </div>
-    <script src="assets/js/main.js"></script>
+    <!-- <script src="assets/js/main.js"></script> -->
 </body>
 </html>

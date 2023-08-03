@@ -30,30 +30,13 @@ h2{
     width: 100%;
 }
 
-.old-point-wrapper>.select-country-wrapper{
-    width: 70%;
-}
-
-.select-country-wrapper>.select-country-btn{
-    display: flex;
-    background-color: rgba(222, 215, 215, 0.766);
-    cursor: pointer;
-    border: 1px solid;
-    height: 30px;
-    overflow-y: hidden;
-    border-radius: 5px;
-    padding: 5px;
-    font-size: 14px;
-    align-items: center;
-}
-
-
-/* .input-point{
-    width: 40%;
-    padding: 2px;
+.input-bar{
+    width: 35%;
+    padding: 3px;
     height: max-content;
     font-size: 14px;
-} */
+    border-radius: 2px;
+}
 
 .input-point-label {
     width: 30%;
@@ -98,6 +81,10 @@ h2{
 .select-box {
     width: 100%;
     position: relative;
+}
+
+#select-box-wrapper>option{
+    max-width: 100%;
 }
 
 .options-container {
