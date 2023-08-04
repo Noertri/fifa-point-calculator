@@ -99,6 +99,10 @@ h2{
     padding: 5px 10px;
 }
 
+.option-list>li:hover {
+    background-color: gainsboro;
+}
+
 .active{
     display: flex;
     flex-direction: column;
