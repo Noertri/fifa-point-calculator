@@ -1,19 +1,12 @@
-let selectBtn = document.getElementById("select-btn");
-let optionList = document.querySelector(".option-list");
-let optionItems = optionList.querySelectorAll("li");
+let optionItems = document.querySelectorAll("#match-categories>option");
 let matchCoeffValue = document.getElementById("match-coeff-value");
 
-selectBtn.addEventListener("click", e => {
-    optionList.classList.toggle("active");
-});
+optionItems[0].selected = true;
 
 for (let item of optionItems) {
-    item.addEventListener("click", e => {
-        if (item.dataset.value) {
-            selectBtn.innerText = item.innerText;
-            matchCoeffValue.innerText = `Koefisien pertandingan = ${item.dataset.value}`;
-        }
-        
-        optionList.classList.remove("active");
-    })
+    if (!(item.disabled)){
+        item.addEventListener("click", e => {
+            matchCoeffValue.innerText = `Koefisien pertandingan = ${item.value}`
+        });
+    }
 }
