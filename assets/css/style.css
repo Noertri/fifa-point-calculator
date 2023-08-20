@@ -30,8 +30,13 @@ h2{
     width: 100%;
 }
 
-.input-bar{
+div.input-bar-wrapper {
     width: 50%;
+    position: relative;
+}
+
+.input-bar-wrapper>.input-bar{
+    width: 100%;
     padding: 5px;
     height: 30px;
     font-size: 14px;
@@ -47,6 +52,19 @@ h2{
 #select-input {
     width: 20%;
     height: 30px;
+    font-size: 14px;
+}
+
+ul.country-list {
+    list-style: None;
+    padding: 0;
+    background-color: white;
+    position: absolute;
+    top: 30px;
+    /* display: none; */
+    width: 100%;
+    max-height: 100px;
+    z-index: 1;
 }
 
 .flex-gap{
