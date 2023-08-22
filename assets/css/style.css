@@ -9,8 +9,8 @@ body {
 
 .container{
     margin: 20px auto;
-    width: 500px;
-    max-width: 75%;
+    width: 560px;
+    /* max-width: 75%; */
     gap: 15px;
     border: 2px solid black;
     padding: 20px;
