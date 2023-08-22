@@ -31,8 +31,12 @@ h2{
     width: 100%;
 }
 
+.old-point-wrapper>label {
+    width: 30%;
+}
+
 div.input-bar-wrapper {
-    width: 50%;
+    width: 70%;
     position: relative;
 }
 
@@ -42,17 +46,6 @@ div.input-bar-wrapper {
     height: 30px;
     border-radius: 3px;
     border: 1px solid;
-}
-
-.input-point-label {
-    width: 30%;
-    margin-right: 5px;
-}
-
-#select-input {
-    width: 20%;
-    height: 30px;
-    /* font-size: 14px; */
 }
 
 ul.country-list {
