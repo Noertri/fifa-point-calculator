@@ -9,12 +9,13 @@ body {
 
 .container{
     margin: 20px auto;
-    width: 480px;
+    width: 500px;
     max-width: 75%;
     gap: 15px;
     border: 2px solid black;
     padding: 20px;
     background-color: rgb(188, 210, 60);
+    font-size: 16px;
 }
 
 h2{
@@ -39,7 +40,6 @@ div.input-bar-wrapper {
     width: 100%;
     padding: 5px;
     height: 30px;
-    font-size: 14px;
     border-radius: 3px;
     border: 1px solid;
 }
@@ -52,7 +52,7 @@ div.input-bar-wrapper {
 #select-input {
     width: 20%;
     height: 30px;
-    font-size: 14px;
+    /* font-size: 14px; */
 }
 
 ul.country-list {
@@ -96,7 +96,7 @@ ul.country-list {
 #match-categories{
     width: 100%;
     height: 30px;
-    font-size: 14px;
+    /* font-size: 14px; */
 }
 
 .submit-btn-wrapper button {
@@ -115,8 +115,4 @@ ul.country-list {
     margin-top: 0;
     margin-bottom: 0;
     gap: 5px;
-}
-
-.match-result-wrapper, .input-point, .match-expect-wrapper, .result-wrapper, #match-coeff-value {
-    font-size: 14px;
 }

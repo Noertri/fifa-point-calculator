@@ -1,12 +1,11 @@
-let optionItems = document.querySelectorAll("#match-categories>option");
+let selectBtn = document.querySelector("#match-categories");
+let optItems = selectBtn.querySelectorAll("option");
 let matchCoeffValue = document.getElementById("match-coeff-value");
 
-optionItems[0].selected = true;
+optItems[0].selected = true;
 
-for (let item of optionItems) {
-    if (!(item.disabled)){
-        item.addEventListener("click", e => {
-            matchCoeffValue.innerText = `Koefisien pertandingan = ${item.value}`
-        });
+selectBtn.addEventListener("change", (e) => {
+    if (!(e.target.disabled)){
+        matchCoeffValue.innerText = `Koefisien pertandingan = ${e.target.value}`
     }
-}
+});
