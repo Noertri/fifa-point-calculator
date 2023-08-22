@@ -114,5 +114,9 @@ ul.country-list {
 .match-expect-wrapper p {
     margin-top: 0;
     margin-bottom: 0;
-    gap: 5px;
+    /* gap: 5px; */
+}
+
+.match-expect-wrapper>div>div {
+    width: 50%;
 }
