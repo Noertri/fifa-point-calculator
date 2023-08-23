@@ -2,33 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Kalkulator Poin FIFA</title>
 </head>
 <body>
-    <div class="container d-flex flex-column">
+    <div class="container d-flex flex-column flex-shrink-1">
 
         <h2>Kalkulator Poin FIFA Online</h1> 
         
         <div class="d-flex flex-column flex-gap input-point-wrapper">
-            <div class="d-flex align-items-center flex-gap flex-shrink-1 old-point-wrapper">
+            <div class="d-flex align-items-center flex-gap">
                 <label for="old-point-team-a">Poin awal tim A:</label>
-                <div class="d-flex flex-column justify-content-center input-bar-wrapper">
-                    <input type="text" id="old-point-team-a" class="input-bar" placeholder="Nama atau kode negara">
-                    <ul class="country-list team-a"></ul>
+                <div class="d-flex flex-column justify-content-center">
+                    <input type="text" id="old-point-team-a" placeholder="Nama atau kode negara">
+                    <ul class="team-a"></ul>
                 </div>
             </div>
         </div>
 
         <div class="d-flex flex-column flex-gap input-point-wrapper">
-            <div class="d-flex align-items-center flex-gap flex-shrink-1 old-point-wrapper">
+            <div class="d-flex align-items-center flex-gap">
                 <label for="old-point-team-b">Poin awal tim B:</label>
-                <div class="d-flex flex-column justify-content-center input-bar-wrapper">
-                    <input type="text" id="old-point-team-b" class="input-bar" placeholder="Nama atau kode negara">
-                    <ul class="country-list team-b"></ul>
+                <div class="d-flex flex-column justify-content-center">
+                    <input type="text" id="old-point-team-b" placeholder="Nama atau kode negara">
+                    <ul class="team-b"></ul>
                 </div>
             </div>
         </div>
@@ -50,11 +50,11 @@
                 </div>
             </div>
             <div>
-                <div class="d-flex align-items-center flex-gap flex-wrap">
+                <div class="d-flex align-items-center flex-gap">
                     <input type="checkbox" name="ko-round-result" id="ko-round" value="true">
                     <label for="ko-round">Babak KO (Knock Out)</label>
                 </div>
-                <div class="d-flex align-items-center flex-gap flex-wrap">
+                <div class="d-flex align-items-center flex-gap">
                     <input type="checkbox" name="penalty-shoot-result" id="penalty-shoot" value="true">
                     <label for="penalty-shoot">Tendangan penalti</label>
                 </div>
