@@ -61,7 +61,7 @@ ul.country-list {
     max-height: 100px;
     z-index: 5;
     border: 1px solid black;
-    overflow-y: hidden;
+    overflow-y: scroll;
 }
 
 ul.country-list li {

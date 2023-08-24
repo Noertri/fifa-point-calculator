@@ -52,22 +52,23 @@ inputTeamA.addEventListener("keyup", (e) => {
         ulTagA.classList.remove("d-flex");
         ulTagA.classList.remove("flex-column");
         ulTagA.classList.remove("country-list");
+        ulTagA.innerHTML = "";
+    }
+
+    let liTags = ulTagA.querySelectorAll("li");
+
+    if(liTags.length){
+        liTags.forEach(element => {
+            element.addEventListener("click", e => {
+                inputTeamA.value = e.target.innerText;
+                ulTagA.classList.remove("d-flex");
+                ulTagA.classList.remove("flex-column");
+                ulTagA.classList.remove("country-list");
+                ulTagA.innerHTML = "";
+            });
+        });
     }
 });
-
-inputTeamA.addEventListener("focusin", (e) => {
-    if (e.target.value.length !== 0) {
-        ulTagA.classList.add("d-flex");
-        ulTagA.classList.add("flex-column");
-        ulTagA.classList.add("country-list");
-    }
-})
-
-inputTeamA.addEventListener("focusout", (e) => {
-    ulTagA.classList.remove("d-flex");
-    ulTagA.classList.remove("flex-column");
-    ulTagA.classList.remove("country-list");
-})
 
 inputTeamB.addEventListener("keyup", (e) => {
     e.stopPropagation();
@@ -86,19 +87,32 @@ inputTeamB.addEventListener("keyup", (e) => {
         ulTagB.classList.remove("d-flex");
         ulTagB.classList.remove("flex-column");
         ulTagB.classList.remove("country-list");
+        ulTagB.innerHTML = "";
+    }
+
+    let liTags = ulTagB.querySelectorAll("li");
+
+    if(liTags.length){
+        liTags.forEach(element => {
+            element.addEventListener("click", e => {
+                inputTeamB.value = e.target.innerText;
+                ulTagB.classList.remove("d-flex");
+                ulTagB.classList.remove("flex-column");
+                ulTagB.classList.remove("country-list");
+                ulTagB.innerHTML = "";
+            });
+        });
     }
 });
 
-inputTeamB.addEventListener("focusin", (e) => {
-    if (e.target.value.length !== 0) {
-        ulTagB.classList.add("d-flex");
-        ulTagB.classList.add("flex-column");
-        ulTagB.classList.add("country-list");
-    }
-})
+document.addEventListener("click", (e) => {
+    let secondLayer = document.querySelectorAll(".layer-2-wrapper");
 
-inputTeamB.addEventListener("focusout", (e) => {
-    ulTagB.classList.remove("d-flex");
-    ulTagB.classList.remove("flex-column");
-    ulTagB.classList.remove("country-list");
+    if (!(secondLayer[0].contains(e.target))) {
+        ulTagA.classList.remove("d-flex");
+    } 
+    
+    if (!(secondLayer[1].contains(e.target))) {
+        ulTagB.classList.remove("d-flex");
+    }
 })
