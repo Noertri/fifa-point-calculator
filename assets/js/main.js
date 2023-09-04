@@ -5,6 +5,8 @@ let inputTeamA = document.getElementById("old-point-team-a");
 let inputTeamB = document.getElementById("old-point-team-b");
 
 optItems[0].selected = true;
+inputTeamA.value = "";
+inputTeamB.value = "";
 
 selectBtn.addEventListener("change", (e) => {
     if (!(e.target.disabled)){
