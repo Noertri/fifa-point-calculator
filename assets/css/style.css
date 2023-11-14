@@ -27,15 +27,11 @@ h2{
 }
 
 .input-point-wrapper>div {
-    width: 100%;
-}
-
-.input-point-wrapper>div>label {
     width: 30%;
 }
 
-.input-point-wrapper>div>div {
-    width: 70%;
+.input-point-wrapper>div.country-wrapper {
+    width: 35%;
     position: relative;
 }
 
@@ -107,6 +103,7 @@ ul.country-list li:hover {
 
 .submit-btn-wrapper button {
     max-width: 100px;
+    max-height: 50px;
 }
 
 .result-wrapper {
