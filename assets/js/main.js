@@ -33,7 +33,7 @@ selectBtn.addEventListener("change", e => {
 let countryList = [];
 
 
-let getMenRanking = async function() {
+let getMenRanking = async () => {
   let rawData = await fetch("http://127.0.0.1:5506/fifa-point-calculator/api/ranking/men?periode=2023-06-29");
   let jsonData = await rawData.json();
 
@@ -83,6 +83,7 @@ inputTeamA.addEventListener("keyup", e => {
       ulTagA.classList.remove("d-flex");
       ulTagA.classList.remove("flex-column");
       ulTagA.classList.remove("country-list");
+      oldPointA.value = "";
     }
   } else if (e.key === "Enter" || e.target.value.length === 0) {
     ulTagA.classList.remove("d-flex");
@@ -130,6 +131,7 @@ inputTeamB.addEventListener("keyup", e => {
       ulTagB.classList.remove("d-flex");
       ulTagB.classList.remove("flex-column");
       ulTagB.classList.remove("country-list");
+      oldPointB.value = "";
     }
   } else if (e.key === "Enter" || e.target.value.length === 0) {
     ulTagB.classList.remove("d-flex");
