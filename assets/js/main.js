@@ -3,14 +3,29 @@ let optItems = selectBtn.querySelectorAll("option");
 let matchCoeffValue = document.getElementById("match-coeff-value");
 let inputTeamA = document.getElementById("country-a");
 let inputTeamB = document.getElementById("country-b");
+let oldPointA = document.getElementById("old-point-team-a");
+let oldPointB = document.getElementById("old-point-team-b");
+let submitBtn = document.getElementById("submit-btn");
 
 optItems[0].selected = true;
 inputTeamA.value = "";
 inputTeamB.value = "";
+oldPointA.value = "";
+oldPointB.value = "";
+
+let data = {
+  oldPointTeamA: 0.0,
+  oldPointTeamB: 0.0,
+  matchCoeff: 0,
+  matchResult: 0,
+  knockout: false,
+  penalty: false
+}
 
 selectBtn.addEventListener("change", e => {
   if (!e.target.disabled) {
     matchCoeffValue.innerText = `Koefisien pertandingan = ${e.target.value}`;
+    data.matchCoeff = parseInt(e.target.value);
   }
 });
 
@@ -18,7 +33,7 @@ selectBtn.addEventListener("change", e => {
 let countryList = [];
 
 
-async function getMenRanking() {
+let getMenRanking = async function() {
   let rawData = await fetch("http://127.0.0.1:5506/fifa-point-calculator/api/ranking/men?periode=2023-06-29");
   let jsonData = await rawData.json();
 
@@ -32,35 +47,6 @@ getMenRanking();
 let ulTagA = document.querySelector("ul.team-a");
 let ulTagB = document.querySelector("ul.team-b");
 
-function showCountries(ulTag, contents, inputTag=null) {
-  ulTag.innerHTML = "";
-
-  if (contents.length !== 0) {
-    ulTag.classList.add("d-flex");
-    ulTag.classList.add("flex-column");
-    ulTag.classList.add("country-list");
-
-    for (let r of contents) {
-      let liTag = document.createElement("li");
-      liTag.innerText = `${r["countryCode"]} - ${r["name"]}`;
-      liTag.addEventListener("click", e => {
-        inputTag.value = e.target.innerText;
-        ulTag.classList.remove("d-flex");
-        ulTag.classList.remove("flex-column");
-        ulTag.classList.remove("country-list");
-        ulTag.innerHTML = "";
-        console.log(r["data"][0]["currentPoints"]);
-      });
-      ulTag.appendChild(liTag);
-    }
-
-  } else {
-    ulTag.classList.remove("d-flex");
-    ulTag.classList.remove("flex-column");
-    ulTag.classList.remove("country-list");
-  }
-}
-
 inputTeamA.addEventListener("keyup", e => {
   let result = [];
 
@@ -73,7 +59,31 @@ inputTeamA.addEventListener("keyup", e => {
       }
     });
 
-    showCountries(ulTagA, result, inputTag=inputTeamA);
+    ulTagA.innerHTML = "";
+
+    if (result.length !== 0) {
+      ulTagA.classList.add("d-flex");
+      ulTagA.classList.add("flex-column");
+      ulTagA.classList.add("country-list");
+
+      for (let r of result) {
+        let liTag = document.createElement("li");
+        liTag.innerText = `${r["countryCode"]} - ${r["name"]}`;
+        liTag.addEventListener("click", e => {
+          inputTeamA.value = e.target.innerText;
+          ulTagA.classList.remove("d-flex");
+          ulTagA.classList.remove("flex-column");
+          ulTagA.classList.remove("country-list");
+          ulTagA.innerHTML = "";
+          oldPointA.value = r["data"][0]["currentPoints"];
+        });
+        ulTagA.appendChild(liTag);
+      }
+    } else {
+      ulTagA.classList.remove("d-flex");
+      ulTagA.classList.remove("flex-column");
+      ulTagA.classList.remove("country-list");
+    }
   } else if (e.key === "Enter" || e.target.value.length === 0) {
     ulTagA.classList.remove("d-flex");
     ulTagA.classList.remove("flex-column");
@@ -96,7 +106,31 @@ inputTeamB.addEventListener("keyup", e => {
       }
     });
 
-    showCountries(ulTagB, result, inputTag=inputTeamB);
+    ulTagB.innerHTML = "";
+
+    if (result.length !== 0) {
+      ulTagB.classList.add("d-flex");
+      ulTagB.classList.add("flex-column");
+      ulTagB.classList.add("country-list");
+
+      for (let r of result) {
+        let liTag = document.createElement("li");
+        liTag.innerText = `${r["countryCode"]} - ${r["name"]}`;
+        liTag.addEventListener("click", e => {
+          inputTeamB.value = e.target.innerText;
+          ulTagB.classList.remove("d-flex");
+          ulTagB.classList.remove("flex-column");
+          ulTagB.classList.remove("country-list");
+          ulTagB.innerHTML = "";
+          oldPointB.value = r["data"][0]["currentPoints"];
+        });
+        ulTagB.appendChild(liTag);
+      }
+    } else {
+      ulTagB.classList.remove("d-flex");
+      ulTagB.classList.remove("flex-column");
+      ulTagB.classList.remove("country-list");
+    }
   } else if (e.key === "Enter" || e.target.value.length === 0) {
     ulTagB.classList.remove("d-flex");
     ulTagB.classList.remove("flex-column");
@@ -116,3 +150,7 @@ document.addEventListener("click", e => {
     ulTagB.classList.remove("d-flex");
   }
 });
+
+submitBtn.addEventListener("click", e => {
+  console.log(data);
+})

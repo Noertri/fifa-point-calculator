@@ -27,12 +27,16 @@ h2{
 }
 
 .input-point-wrapper>div {
-    width: 30%;
+    width: 20%;
 }
 
 .input-point-wrapper>div.country-wrapper {
-    width: 35%;
+    width: 40%;
     position: relative;
+}
+
+.input-point-wrapper>div:nth-child(3) {
+    width: 40%;
 }
 
 .input-point-wrapper input{
