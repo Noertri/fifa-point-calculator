@@ -19,7 +19,9 @@ let data = {
   matchCoeff: 0,
   matchResult: 0,
   knockout: false,
-  penalty: false
+  penalty: false,
+  newPointTeamA: 0.0,
+  newPointTeamB: 0.0
 }
 
 selectBtn.addEventListener("change", e => {
@@ -154,5 +156,7 @@ document.addEventListener("click", e => {
 });
 
 submitBtn.addEventListener("click", e => {
+  data.oldPointTeamA = parseFloat(oldPointA.value);
+  data.oldPointTeamB = parseFloat(oldPointB.value);
   console.log(data);
 })
