@@ -6,6 +6,7 @@ let inputTeamB = document.getElementById("country-b");
 let oldPointA = document.getElementById("old-point-team-a");
 let oldPointB = document.getElementById("old-point-team-b");
 let submitBtn = document.getElementById("submit-btn");
+let matchResults = document.querySelectorAll("input[name='match-result']")
 
 optItems[0].selected = true;
 inputTeamA.value = "";
@@ -17,12 +18,14 @@ let data = {
   oldPointTeamA: 0.0,
   oldPointTeamB: 0.0,
   matchCoeff: 0,
-  matchResult: 0,
-  knockout: false,
-  penalty: false,
+  matchResult: "",
+  ko: false,
+  pso: false,
   newPointTeamA: 0.0,
-  newPointTeamB: 0.0
-}
+  newPointTeamB: 0.0,
+  weA: 0.0,
+  weB: 0.0
+};
 
 selectBtn.addEventListener("change", e => {
   if (!e.target.disabled) {
@@ -31,18 +34,19 @@ selectBtn.addEventListener("change", e => {
   }
 });
 
-
 let countryList = [];
 
-
 let getMenRanking = async () => {
-  let rawData = await fetch("http://127.0.0.1:5506/fifa-point-calculator/api/ranking/men?periode=2023-06-29");
+  let rawData = await fetch(
+    "http://127.0.0.1:5506/fifa-point-calculator/api/ranking/men?periode=2023-06-29"
+  );
+
   let jsonData = await rawData.json();
 
   for (let d of jsonData) {
     countryList.push(d);
   }
-}
+};
 
 getMenRanking();
 
@@ -56,7 +60,10 @@ inputTeamA.addEventListener("keyup", e => {
     let keyWord = e.target.value.toLowerCase();
 
     result = countryList.filter(obj => {
-      if (obj["name"].toLowerCase().includes(keyWord) || obj["countryCode"].toLowerCase().includes(keyWord)) {
+      if (
+        obj["name"].toLowerCase().includes(keyWord) ||
+        obj["countryCode"].toLowerCase().includes(keyWord)
+      ) {
         return obj;
       }
     });
@@ -104,7 +111,10 @@ inputTeamB.addEventListener("keyup", e => {
     let keyWord = e.target.value.toLowerCase();
 
     result = countryList.filter(obj => {
-      if (obj["name"].toLowerCase().includes(keyWord) || obj["countryCode"].toLowerCase().includes(keyWord)) {
+      if (
+        obj["name"].toLowerCase().includes(keyWord) ||
+        obj["countryCode"].toLowerCase().includes(keyWord)
+      ) {
         return obj;
       }
     });
@@ -158,5 +168,96 @@ document.addEventListener("click", e => {
 submitBtn.addEventListener("click", e => {
   data.oldPointTeamA = parseFloat(oldPointA.value);
   data.oldPointTeamB = parseFloat(oldPointB.value);
+  console.log(data);
+});
+
+// Hasil pertandingan
+matchResults.forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    if (e.target.checked){
+      data.matchResult = e.target.value;
+    }
+  })
+})
+
+// babak knockout dan tendangan penalti 
+let addRule1 = document.getElementById("ko-round");
+let addRule2 = document.getElementById("pso-round"); 
+
+addRule1.addEventListener("click", (e) => {
+  if (e.target.checked){
+    data.ko = Boolean(e.target.value);
+  } else {
+    data.ko = false;
+  }
+});
+
+addRule2.addEventListener("click", (e) => {
+  if (e.target.checked){
+    data.ko = Boolean(e.target.value);
+  } else {
+    data.ko = false;
+  }
+});
+
+// fungsi untuk menghitung ekspetasi kemenangan (we)
+function matchExpectation(point1, point2){
+  let dr = point1 - point2;
+  let we = 1/(10**(-1*(dr/600))+1);
+
+  return we
+}
+
+function calcPoints(matchData) {
+  let weA = matchData.weA;
+  let weB = matchData.weB;
+
+  let diffPointTeamA;
+  let diffPointTeamB;
+
+  switch (matchData.matchResult) {
+      case "win":
+          if (matchData.kickOffRound && matchData.pso) {
+              diffPointTeamA = matchData.matchCoeff*(0.75-weA);
+              diffPointTeamB = matchData.matchCoeff*(0.5-weB);
+          } else if (matchData.kickOffRound) {
+              diffPointTeamA = matchData.matchCoeff*(1-weA);
+              diffPointTeamB = 0.00;
+          } else {
+              diffPointTeamA = matchData.matchCoeff*(1-weA);
+              diffPointTeamB = matchData.matchCoeff*(0-weB);
+          }
+          break
+      case "draw":
+          diffPointTeamA = matchData.matchCoeff*(0.5-weA);
+          diffPointTeamB = matchData.matchCoeff*(0.5-weB);
+          break
+      case "lose":
+          if (matchData.kickOffRound && matchData.pso) {
+              diffPointTeamA = matchData.matchCoeff*(0.5-weA);
+              diffPointTeamB = matchData.matchCoeff*(0.75-weB);
+          } else if (matchData.kickOffRound) {
+              diffPointTeamA = 0.00;
+              diffPointTeamB = matchData.matchCoeff*(1-weB);
+          } else {
+              diffPointTeamA = matchData.matchCoeff*(0-weA);
+              diffPointTeamB = matchData.matchCoeff*(1-weB);
+          }
+          break
+      default:
+          diffPointTeamA = 0.0;
+          diffPointTeamB = 0.0;
+          break
+  }
+  
+  matchData.newPointTeamA = matchData.oldPointTeamA + parseFloat(diffPointTeamA.toFixed(2));
+  matchData.newPointTeamB = matchData.oldPointTeamB + parseFloat(diffPointTeamB.toFixed(2));
+  matchData.diffPointTeamA = diffPointTeamA;
+  matchData.diffPointTeamB = diffPointTeamB;
+
+  updateNewPoints(matchData);
+}
+
+submitBtn.addEventListener("click", () => {
   console.log(data);
 })
