@@ -198,6 +198,7 @@ function matchExpect(point1, point2){
   return Number(we.toFixed(2))
 }
 
+// fungsi untuk menghitung poin yang diperoleh
 function calcPoints({oldPointA, oldPointB, matchResult, ko, pso, matchCoeff}) {
   let matchData = {
     "oldPointA": oldPointA,
@@ -258,8 +259,8 @@ function calcPoints({oldPointA, oldPointB, matchResult, ko, pso, matchCoeff}) {
           break
   }
   
-  matchData.newPointTeamA = oldPointA + Number(deltaA.toFixed(2));
-  matchData.newPointTeamB = oldPointB + Number(deltaB.toFixed(2));
+  matchData.newPointA = oldPointA + Number(deltaA.toFixed(2));
+  matchData.newPointB = oldPointB + Number(deltaB.toFixed(2));
   matchData.deltaA = deltaA;
   matchData.deltaB = deltaB;
 
