@@ -3,28 +3,24 @@ let optItems = selectBtn.querySelectorAll("option");
 let matchCoeffValue = document.getElementById("match-coeff-value");
 let inputTeamA = document.getElementById("country-a");
 let inputTeamB = document.getElementById("country-b");
-let oldPointA = document.getElementById("old-point-team-a");
-let oldPointB = document.getElementById("old-point-team-b");
+let oldPointAElem = document.getElementById("old-point-team-a");
+let oldPointBElem = document.getElementById("old-point-team-b");
 let submitBtn = document.getElementById("submit-btn");
 let matchResults = document.querySelectorAll("input[name='match-result']")
 
 optItems[0].selected = true;
 inputTeamA.value = "";
 inputTeamB.value = "";
-oldPointA.value = "";
-oldPointB.value = "";
+oldPointAElem.value = "";
+oldPointBElem.value = "";
 
 let data = {
-  oldPointTeamA: 0.0,
-  oldPointTeamB: 0.0,
+  oldPointA: 0.0,
+  oldPointB: 0.0,
   matchCoeff: 0,
   matchResult: "",
   ko: false,
   pso: false,
-  newPointTeamA: 0.0,
-  newPointTeamB: 0.0,
-  weA: 0.0,
-  weB: 0.0
 };
 
 selectBtn.addEventListener("change", e => {
@@ -84,7 +80,7 @@ inputTeamA.addEventListener("keyup", e => {
           ulTagA.classList.remove("flex-column");
           ulTagA.classList.remove("country-list");
           ulTagA.innerHTML = "";
-          oldPointA.value = r["data"][0]["currentPoints"];
+          oldPointAElem.value = r["data"][0]["currentPoints"];
         });
         ulTagA.appendChild(liTag);
       }
@@ -92,7 +88,7 @@ inputTeamA.addEventListener("keyup", e => {
       ulTagA.classList.remove("d-flex");
       ulTagA.classList.remove("flex-column");
       ulTagA.classList.remove("country-list");
-      oldPointA.value = "";
+      oldPointAElem.value = "";
     }
   } else if (e.key === "Enter" || e.target.value.length === 0) {
     ulTagA.classList.remove("d-flex");
@@ -135,7 +131,7 @@ inputTeamB.addEventListener("keyup", e => {
           ulTagB.classList.remove("flex-column");
           ulTagB.classList.remove("country-list");
           ulTagB.innerHTML = "";
-          oldPointB.value = r["data"][0]["currentPoints"];
+          oldPointBElem.value = r["data"][0]["currentPoints"];
         });
         ulTagB.appendChild(liTag);
       }
@@ -143,7 +139,7 @@ inputTeamB.addEventListener("keyup", e => {
       ulTagB.classList.remove("d-flex");
       ulTagB.classList.remove("flex-column");
       ulTagB.classList.remove("country-list");
-      oldPointB.value = "";
+      oldPointBElem.value = "";
     }
   } else if (e.key === "Enter" || e.target.value.length === 0) {
     ulTagB.classList.remove("d-flex");
@@ -163,12 +159,6 @@ document.addEventListener("click", e => {
   if (!countryWrapper[1].contains(e.target)) {
     ulTagB.classList.remove("d-flex");
   }
-});
-
-submitBtn.addEventListener("click", e => {
-  data.oldPointTeamA = parseFloat(oldPointA.value);
-  data.oldPointTeamB = parseFloat(oldPointB.value);
-  console.log(data);
 });
 
 // Hasil pertandingan
@@ -194,70 +184,91 @@ addRule1.addEventListener("click", (e) => {
 
 addRule2.addEventListener("click", (e) => {
   if (e.target.checked){
-    data.ko = Boolean(e.target.value);
+    data.pso = Boolean(e.target.value);
   } else {
-    data.ko = false;
+    data.pso = false;
   }
 });
 
 // fungsi untuk menghitung ekspetasi kemenangan (we)
-function matchExpectation(point1, point2){
+function matchExpect(point1, point2){
   let dr = point1 - point2;
   let we = 1/(10**(-1*(dr/600))+1);
 
-  return we
+  return Number(we.toFixed(2))
 }
 
-function calcPoints(matchData) {
-  let weA = matchData.weA;
-  let weB = matchData.weB;
+function calcPoints({oldPointA, oldPointB, matchResult, ko, pso, matchCoeff}) {
+  let matchData = {
+    "oldPointA": oldPointA,
+    "oldPointB": oldPointB,
+    "matchResult": matchResult,
+    "matchCoeff": matchCoeff,
+    "ko": ko,
+    "pso": pso
+  };
 
-  let diffPointTeamA;
-  let diffPointTeamB;
+  let weA = matchExpect(oldPointA, oldPointB);
+  let weB = matchExpect(oldPointB, oldPointA);
 
-  switch (matchData.matchResult) {
+  matchData.weA = weA;
+  matchData.weB = weB;
+
+  let deltaA;
+  let deltaB;
+
+  switch (matchResult) {
       case "win":
-          if (matchData.kickOffRound && matchData.pso) {
-              diffPointTeamA = matchData.matchCoeff*(0.75-weA);
-              diffPointTeamB = matchData.matchCoeff*(0.5-weB);
-          } else if (matchData.kickOffRound) {
-              diffPointTeamA = matchData.matchCoeff*(1-weA);
-              diffPointTeamB = 0.00;
+          if (ko && pso) {
+              deltaA = matchCoeff*(0.75-weA);
+              deltaB = 0.0;
+          } else if (ko && !(pso)) {
+              deltaA = matchCoeff*(1-weA);
+              deltaB = 0.0;
+          } else if (pso && !(ko)) {
+              deltaA = matchCoeff*(0.75-weA);
+              deltaB = matchCoeff*(0.5-weB);
           } else {
-              diffPointTeamA = matchData.matchCoeff*(1-weA);
-              diffPointTeamB = matchData.matchCoeff*(0-weB);
+              deltaA = matchCoeff*(1-weA);
+              deltaB = matchCoeff*(0-weB);
           }
           break
       case "draw":
-          diffPointTeamA = matchData.matchCoeff*(0.5-weA);
-          diffPointTeamB = matchData.matchCoeff*(0.5-weB);
+          deltaA = matchCoeff*(0.5-weA);
+          deltaB = matchCoeff*(0.5-weB);
           break
       case "lose":
-          if (matchData.kickOffRound && matchData.pso) {
-              diffPointTeamA = matchData.matchCoeff*(0.5-weA);
-              diffPointTeamB = matchData.matchCoeff*(0.75-weB);
-          } else if (matchData.kickOffRound) {
-              diffPointTeamA = 0.00;
-              diffPointTeamB = matchData.matchCoeff*(1-weB);
+          if (ko && pso) {
+              deltaA = 0.0;
+              deltaB = matchCoeff*(0.75-weB);
+          } else if (ko && !(pso)) {
+              deltaA = 0.0;
+              deltaB = matchCoeff*(1-weB);
+          } else if (pso && !(ko)) {
+              deltaA = matchCoeff*(0.5-weA);
+              deltaB = matchCoeff*(0.75-weB);
           } else {
-              diffPointTeamA = matchData.matchCoeff*(0-weA);
-              diffPointTeamB = matchData.matchCoeff*(1-weB);
+              deltaA = matchCoeff*(0-weA);
+              deltaB = matchCoeff*(1-weB);
           }
           break
       default:
-          diffPointTeamA = 0.0;
-          diffPointTeamB = 0.0;
+          deltaA = 0.0;
+          deltaB = 0.0;
           break
   }
   
-  matchData.newPointTeamA = matchData.oldPointTeamA + parseFloat(diffPointTeamA.toFixed(2));
-  matchData.newPointTeamB = matchData.oldPointTeamB + parseFloat(diffPointTeamB.toFixed(2));
-  matchData.diffPointTeamA = diffPointTeamA;
-  matchData.diffPointTeamB = diffPointTeamB;
+  matchData.newPointTeamA = oldPointA + Number(deltaA.toFixed(2));
+  matchData.newPointTeamB = oldPointB + Number(deltaB.toFixed(2));
+  matchData.deltaA = deltaA;
+  matchData.deltaB = deltaB;
 
-  updateNewPoints(matchData);
+  return matchData
 }
 
-submitBtn.addEventListener("click", () => {
-  console.log(data);
-})
+submitBtn.addEventListener("click", e => {
+  data.oldPointA = parseFloat(oldPointAElem.value);
+  data.oldPointB = parseFloat(oldPointBElem.value);
+  let matchData = calcPoints(data);
+  console.log(matchData);
+});
