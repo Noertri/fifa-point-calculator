@@ -9,7 +9,7 @@
     <title>Kalkulator Poin FIFA</title>
   </head>
   <body>
-    <div class="container d-flex flex-column flex-shrink-1">
+    <div class="container d-flex flex-column justify-content-center align-items-center flex-shrink-1">
       <h2>Kalkulator Poin FIFA Online</h2>
 
       <div class="d-flex flex-gap align-items-center input-point-wrapper">
@@ -66,7 +66,7 @@
         </option>
       </select>
 
-      <div class="match-expect-wrapper d-flex flex-column">
+      <div class="match-expect-wrapper">
         <p id="match-coeff-value">Koefisien pertandingan = 0</p>
       </div>
 
@@ -116,14 +116,14 @@
               id="pso-round"
               value="true"
             />
-            <label for="penalty-shoot">Tendangan penalti</label>
+            <label for="pso-round">Tendangan penalti</label>
           </div>
         </div>
       </div>
 
-      <div class="submit-btn-wrapper d-flex flex-column align-items-center">
+      <div class="btn-wrapper d-flex align-items-center justify-content-center">
         <button
-          class="btn btn-primary d-flex align-items-center flex-shrink-1"
+          class="btn btn-primary"
           type="submit"
           id="submit-btn"
         >
@@ -131,16 +131,18 @@
         </button>
       </div>
 
-      <div class="result-wrapper d-flex flex-column flex-shrink-1">
-        <div class="new-point-wrapper d-flex justify-content-between team-a">
-          <span class="name">Poin baru tim A:</span>
-          <span class="new-point team-a"></span>
-          <span class="diff-point team-a"></span>
+      <div class="result-wrapper d-flex flex-shrink-1">
+        <div class="d-flex flex-column justify-content-center align-items-start">
+          <span class="name">Negara A:</span>
+          <span class="name">Negara B:</span>
         </div>
-        <div class="new-point-wrapper d-flex justify-content-between team-b">
-          <span class="name">Poin baru tim B:</span>
-          <span class="new-point team-b"></span>
-          <span class="diff-point team-b"></span>
+        <div class="new-point-wrapper d-flex flex-column align-items-center justify-content-center">
+          <span class="new-point team-a">0.00</span>
+          <span class="new-point team-b">0.00</span>
+        </div>
+        <div class="diff-point-wrapper d-flex flex-column align-items-center justify-content-center">
+          <span class="diff-point team-a">0.00</span>
+          <span class="diff-point team-b">0.00</span>
         </div>
       </div>
     </div>

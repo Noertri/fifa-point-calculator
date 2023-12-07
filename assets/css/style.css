@@ -20,6 +20,7 @@ body {
 h2{
     text-align: center;
     margin-bottom: 30px;
+    max-width: 80%;
 }
 
 .input-point-wrapper {
@@ -78,7 +79,7 @@ ul.country-list li:hover {
 }
 
 .match-result-wrapper{
-    max-width: 100%;
+    width: 100%;
     gap: 10px;
 }
 
@@ -105,25 +106,46 @@ ul.country-list li:hover {
     /* font-size: 14px; */
 }
 
-.submit-btn-wrapper button {
+.btn-wrapper {
+    width: 100%;
+}
+
+.btn-wrapper button {
     max-width: 100px;
     max-height: 50px;
+    font-size: 16px;
 }
 
 .result-wrapper {
-    max-width: 100%;
+    width: 100%;
     border: 1px solid gray;
     margin-top: 5px;
     padding: 10px;
     gap: 5px;
+    background-color: white;
+}
+
+.result-wrapper>div:nth-child(1) {
+    width: 30%;
+    gap: 5px;
+}
+
+.new-point-wrapper {
+    width: 35%;
+    gap: 5px;
+}
+
+.diff-point-wrapper {
+    width: 35%;
+    gap: 5px;
+}
+
+.match-expect-wrapper {
+    width: 100%;
 }
 
 .match-expect-wrapper p {
     margin-top: 0;
     margin-bottom: 0;
     /* gap: 5px; */
-}
-
-.match-expect-wrapper>div>div {
-    width: 50%;
 }

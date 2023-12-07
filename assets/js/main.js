@@ -6,7 +6,7 @@ let inputTeamB = document.getElementById("country-b");
 let oldPointAElem = document.getElementById("old-point-team-a");
 let oldPointBElem = document.getElementById("old-point-team-b");
 let submitBtn = document.getElementById("submit-btn");
-let matchResults = document.querySelectorAll("input[name='match-result']")
+let matchResults = document.querySelectorAll("input[name='match-result']");
 
 optItems[0].selected = true;
 inputTeamA.value = "";
@@ -20,10 +20,10 @@ let data = {
   matchCoeff: 0,
   matchResult: "",
   ko: false,
-  pso: false,
+  pso: false
 };
 
-selectBtn.addEventListener("change", e => {
+selectBtn.addEventListener("change", (e) => {
   if (!e.target.disabled) {
     matchCoeffValue.innerText = `Koefisien pertandingan = ${e.target.value}`;
     data.matchCoeff = parseInt(e.target.value);
@@ -49,13 +49,13 @@ getMenRanking();
 let ulTagA = document.querySelector("ul.team-a");
 let ulTagB = document.querySelector("ul.team-b");
 
-inputTeamA.addEventListener("keyup", e => {
+inputTeamA.addEventListener("keyup", (e) => {
   let result = [];
 
   if (e.target.value.length !== 0 && e.key !== "Enter") {
     let keyWord = e.target.value.toLowerCase();
 
-    result = countryList.filter(obj => {
+    result = countryList.filter((obj) => {
       if (
         obj["name"].toLowerCase().includes(keyWord) ||
         obj["countryCode"].toLowerCase().includes(keyWord)
@@ -74,7 +74,7 @@ inputTeamA.addEventListener("keyup", e => {
       for (let r of result) {
         let liTag = document.createElement("li");
         liTag.innerText = `${r["countryCode"]} - ${r["name"]}`;
-        liTag.addEventListener("click", e => {
+        liTag.addEventListener("click", (e) => {
           inputTeamA.value = e.target.innerText;
           ulTagA.classList.remove("d-flex");
           ulTagA.classList.remove("flex-column");
@@ -98,7 +98,7 @@ inputTeamA.addEventListener("keyup", e => {
   }
 });
 
-inputTeamB.addEventListener("keyup", e => {
+inputTeamB.addEventListener("keyup", (e) => {
   e.stopPropagation();
 
   let result = [];
@@ -106,7 +106,7 @@ inputTeamB.addEventListener("keyup", e => {
   if (e.target.value.length !== 0 && e.key !== "Enter") {
     let keyWord = e.target.value.toLowerCase();
 
-    result = countryList.filter(obj => {
+    result = countryList.filter((obj) => {
       if (
         obj["name"].toLowerCase().includes(keyWord) ||
         obj["countryCode"].toLowerCase().includes(keyWord)
@@ -125,7 +125,7 @@ inputTeamB.addEventListener("keyup", e => {
       for (let r of result) {
         let liTag = document.createElement("li");
         liTag.innerText = `${r["countryCode"]} - ${r["name"]}`;
-        liTag.addEventListener("click", e => {
+        liTag.addEventListener("click", (e) => {
           inputTeamB.value = e.target.innerText;
           ulTagB.classList.remove("d-flex");
           ulTagB.classList.remove("flex-column");
@@ -149,7 +149,7 @@ inputTeamB.addEventListener("keyup", e => {
   }
 });
 
-document.addEventListener("click", e => {
+document.addEventListener("click", (e) => {
   let countryWrapper = document.querySelectorAll(".country-wrapper");
 
   if (!countryWrapper[0].contains(e.target)) {
@@ -162,20 +162,20 @@ document.addEventListener("click", e => {
 });
 
 // Hasil pertandingan
-matchResults.forEach(btn => {
+matchResults.forEach((btn) => {
   btn.addEventListener("click", (e) => {
-    if (e.target.checked){
+    if (e.target.checked) {
       data.matchResult = e.target.value;
     }
-  })
-})
+  });
+});
 
-// babak knockout dan tendangan penalti 
+// babak knockout dan tendangan penalti
 let addRule1 = document.getElementById("ko-round");
-let addRule2 = document.getElementById("pso-round"); 
+let addRule2 = document.getElementById("pso-round");
 
 addRule1.addEventListener("click", (e) => {
-  if (e.target.checked){
+  if (e.target.checked) {
     data.ko = Boolean(e.target.value);
   } else {
     data.ko = false;
@@ -183,7 +183,7 @@ addRule1.addEventListener("click", (e) => {
 });
 
 addRule2.addEventListener("click", (e) => {
-  if (e.target.checked){
+  if (e.target.checked) {
     data.pso = Boolean(e.target.value);
   } else {
     data.pso = false;
@@ -191,22 +191,29 @@ addRule2.addEventListener("click", (e) => {
 });
 
 // fungsi untuk menghitung ekspetasi kemenangan (we)
-function matchExpect(point1, point2){
+function matchExpect(point1, point2) {
   let dr = point1 - point2;
-  let we = 1/(10**(-1*(dr/600))+1);
+  let we = 1 / (10 ** (-1 * (dr / 600)) + 1);
 
-  return Number(we.toFixed(2))
+  return Number(we.toFixed(2));
 }
 
 // fungsi untuk menghitung poin yang diperoleh
-function calcPoints({oldPointA, oldPointB, matchResult, ko, pso, matchCoeff}) {
+function calcPoints({
+  oldPointA,
+  oldPointB,
+  matchResult,
+  ko,
+  pso,
+  matchCoeff
+}) {
   let matchData = {
-    "oldPointA": oldPointA,
-    "oldPointB": oldPointB,
-    "matchResult": matchResult,
-    "matchCoeff": matchCoeff,
-    "ko": ko,
-    "pso": pso
+    oldPointA: oldPointA,
+    oldPointB: oldPointB,
+    matchResult: matchResult,
+    matchCoeff: matchCoeff,
+    ko: ko,
+    pso: pso
   };
 
   let weA = matchExpect(oldPointA, oldPointB);
@@ -219,57 +226,69 @@ function calcPoints({oldPointA, oldPointB, matchResult, ko, pso, matchCoeff}) {
   let deltaB;
 
   switch (matchResult) {
-      case "win":
-          if (ko && pso) {
-              deltaA = matchCoeff*(0.75-weA);
-              deltaB = 0.0;
-          } else if (ko && !(pso)) {
-              deltaA = matchCoeff*(1-weA);
-              deltaB = 0.0;
-          } else if (pso && !(ko)) {
-              deltaA = matchCoeff*(0.75-weA);
-              deltaB = matchCoeff*(0.5-weB);
-          } else {
-              deltaA = matchCoeff*(1-weA);
-              deltaB = matchCoeff*(0-weB);
-          }
-          break
-      case "draw":
-          deltaA = matchCoeff*(0.5-weA);
-          deltaB = matchCoeff*(0.5-weB);
-          break
-      case "lose":
-          if (ko && pso) {
-              deltaA = 0.0;
-              deltaB = matchCoeff*(0.75-weB);
-          } else if (ko && !(pso)) {
-              deltaA = 0.0;
-              deltaB = matchCoeff*(1-weB);
-          } else if (pso && !(ko)) {
-              deltaA = matchCoeff*(0.5-weA);
-              deltaB = matchCoeff*(0.75-weB);
-          } else {
-              deltaA = matchCoeff*(0-weA);
-              deltaB = matchCoeff*(1-weB);
-          }
-          break
-      default:
-          deltaA = 0.0;
-          deltaB = 0.0;
-          break
+    case "win":
+      if (ko && pso) {
+        deltaA = matchCoeff * (0.75 - weA);
+        deltaB = 0.0;
+      } else if (ko && !pso) {
+        deltaA = matchCoeff * (1 - weA);
+        deltaB = 0.0;
+      } else if (pso && !ko) {
+        deltaA = matchCoeff * (0.75 - weA);
+        deltaB = matchCoeff * (0.5 - weB);
+      } else {
+        deltaA = matchCoeff * (1 - weA);
+        deltaB = matchCoeff * (0 - weB);
+      }
+      break;
+    case "draw":
+      deltaA = matchCoeff * (0.5 - weA);
+      deltaB = matchCoeff * (0.5 - weB);
+      break;
+    case "lose":
+      if (ko && pso) {
+        deltaA = 0.0;
+        deltaB = matchCoeff * (0.75 - weB);
+      } else if (ko && !pso) {
+        deltaA = 0.0;
+        deltaB = matchCoeff * (1 - weB);
+      } else if (pso && !ko) {
+        deltaA = matchCoeff * (0.5 - weA);
+        deltaB = matchCoeff * (0.75 - weB);
+      } else {
+        deltaA = matchCoeff * (0 - weA);
+        deltaB = matchCoeff * (1 - weB);
+      }
+      break;
+    default:
+      deltaA = 0.0;
+      deltaB = 0.0;
+      break;
   }
-  
+
   matchData.newPointA = oldPointA + Number(deltaA.toFixed(2));
   matchData.newPointB = oldPointB + Number(deltaB.toFixed(2));
   matchData.deltaA = deltaA;
   matchData.deltaB = deltaB;
 
-  return matchData
+  return matchData;
 }
 
-submitBtn.addEventListener("click", e => {
-  data.oldPointA = parseFloat(oldPointAElem.value);
-  data.oldPointB = parseFloat(oldPointBElem.value);
-  let matchData = calcPoints(data);
-  console.log(matchData);
+submitBtn.addEventListener("click", (e) => {
+  if (oldPointAElem.value && oldPointBElem.value) {
+    data.oldPointA = parseFloat(oldPointAElem.value);
+    data.oldPointB = parseFloat(oldPointBElem.value);
+  }
+
+  let {newPointA, newPointB, deltaA, deltaB} = calcPoints(data);
+
+  let spanA = document.querySelector(".new-point.team-a");
+  let spanB = document.querySelector(".new-point.team-b");
+  let diffA = document.querySelector(".diff-point.team-a");
+  let diffB = document.querySelector(".diff-point.team-b");
+
+  spanA.innerText = `${newPointA.toFixed(2)}`;
+  diffA.innerText = `${deltaA.toFixed(2)}`;
+  spanB.innerText = `${newPointB.toFixed(2)}`;
+  diffB.innerText = `${deltaB.toFixed(2)}`;
 });
