@@ -14,7 +14,7 @@ body {
     border: 2px solid black;
     padding: 20px;
     background-color: rgb(188, 210, 60);
-    font-size: 14px;
+    font-size: 16px;
 }
 
 h2{
@@ -27,7 +27,7 @@ h2{
     width: 100%;
 }
 
-.input-point-wrapper>div {
+.input-point-wrapper>div:nth-child(1) {
     width: 20%;
 }
 
@@ -38,6 +38,16 @@ h2{
 
 .input-point-wrapper>div:nth-child(3) {
     width: 40%;
+}
+
+.country-wrapper>div.country-opts {
+    border: 1px solid;
+    background-color: rgba(217, 210, 210, 0.823);
+    padding: 2px 5px 2px 5px;
+    height: 30px;
+    text-align: left;
+    cursor: pointer;
+    overflow-y: hidden;
 }
 
 .input-point-wrapper input{
@@ -59,7 +69,7 @@ ul.country-list {
     position: absolute;
     top: 32px;
     width: 100%;
-    max-height: 100px;
+    max-height: 200px;
     z-index: 5;
     border: 1px solid black;
     overflow-y: scroll;
@@ -103,7 +113,10 @@ ul.country-list li:hover {
 #match-categories{
     width: 100%;
     height: 30px;
-    /* font-size: 14px; */
+}
+
+#match-categories option {
+    font-size: 14px;
 }
 
 .btn-wrapper {

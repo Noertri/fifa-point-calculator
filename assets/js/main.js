@@ -1,16 +1,14 @@
 let selectBtn = document.querySelector("#match-categories");
 let optItems = selectBtn.querySelectorAll("option");
 let matchCoeffValue = document.getElementById("match-coeff-value");
-let inputTeamA = document.getElementById("country-a");
-let inputTeamB = document.getElementById("country-b");
+let inputTeamA = document.querySelector("div.country-opts.team-a");
+let inputTeamB = document.querySelector("div.country-opts.team-b");
 let oldPointAElem = document.getElementById("old-point-team-a");
 let oldPointBElem = document.getElementById("old-point-team-b");
 let submitBtn = document.getElementById("submit-btn");
 let matchResults = document.querySelectorAll("input[name='match-result']");
 
 optItems[0].selected = true;
-inputTeamA.value = "";
-inputTeamB.value = "";
 oldPointAElem.value = "";
 oldPointBElem.value = "";
 
@@ -46,106 +44,73 @@ let getMenRanking = async () => {
 
 getMenRanking();
 
+
 let ulTagA = document.querySelector("ul.team-a");
 let ulTagB = document.querySelector("ul.team-b");
 
-inputTeamA.addEventListener("keyup", (e) => {
-  let result = [];
+inputTeamA.addEventListener("click", (e) => {
+  e.stopPropagation();
 
-  if (e.target.value.length !== 0 && e.key !== "Enter") {
-    let keyWord = e.target.value.toLowerCase();
+  ulTagA.classList.toggle("d-flex");
+  ulTagA.classList.toggle("flex-column");
+  ulTagA.classList.toggle("country-list");
 
-    result = countryList.filter((obj) => {
-      if (
-        obj["name"].toLowerCase().includes(keyWord) ||
-        obj["countryCode"].toLowerCase().includes(keyWord)
-      ) {
-        return obj;
-      }
-    });
-
-    ulTagA.innerHTML = "";
-
-    if (result.length !== 0) {
-      ulTagA.classList.add("d-flex");
-      ulTagA.classList.add("flex-column");
-      ulTagA.classList.add("country-list");
-
-      for (let r of result) {
-        let liTag = document.createElement("li");
-        liTag.innerText = `${r["countryCode"]} - ${r["name"]}`;
-        liTag.addEventListener("click", (e) => {
-          inputTeamA.value = e.target.innerText;
-          ulTagA.classList.remove("d-flex");
-          ulTagA.classList.remove("flex-column");
-          ulTagA.classList.remove("country-list");
-          ulTagA.innerHTML = "";
-          oldPointAElem.value = r["data"][0]["currentPoints"];
-        });
-        ulTagA.appendChild(liTag);
-      }
+  // Sort array countryList
+  countryList.sort((c1, c2) => {
+    if (c1.countryCode < c2.countryCode) {
+      return -1
+    } else if (c1.countryCode < c2.countryCode) {
+      return 1
     } else {
+      return 0
+    }
+  });
+
+  for (let r of countryList) {
+    let liTag = document.createElement("li");
+    liTag.innerText = `${r["countryCode"]} - ${r["name"]}`;
+    liTag.addEventListener("click", (e) => {
+      inputTeamA.innerText = e.target.innerText;
       ulTagA.classList.remove("d-flex");
       ulTagA.classList.remove("flex-column");
       ulTagA.classList.remove("country-list");
-      oldPointAElem.value = "";
-    }
-  } else if (e.key === "Enter" || e.target.value.length === 0) {
-    ulTagA.classList.remove("d-flex");
-    ulTagA.classList.remove("flex-column");
-    ulTagA.classList.remove("country-list");
-    ulTagA.innerHTML = "";
+      ulTagA.innerHTML = "";
+      oldPointAElem.value = r["data"][0]["currentPoints"];
+    });
+    ulTagA.appendChild(liTag);
   }
 });
 
-inputTeamB.addEventListener("keyup", (e) => {
+inputTeamB.addEventListener("click", (e) => {
   e.stopPropagation();
 
-  let result = [];
+  ulTagB.classList.toggle("d-flex");
+  ulTagB.classList.toggle("flex-column");
+  ulTagB.classList.toggle("country-list");
 
-  if (e.target.value.length !== 0 && e.key !== "Enter") {
-    let keyWord = e.target.value.toLowerCase();
-
-    result = countryList.filter((obj) => {
-      if (
-        obj["name"].toLowerCase().includes(keyWord) ||
-        obj["countryCode"].toLowerCase().includes(keyWord)
-      ) {
-        return obj;
-      }
-    });
-
-    ulTagB.innerHTML = "";
-
-    if (result.length !== 0) {
-      ulTagB.classList.add("d-flex");
-      ulTagB.classList.add("flex-column");
-      ulTagB.classList.add("country-list");
-
-      for (let r of result) {
-        let liTag = document.createElement("li");
-        liTag.innerText = `${r["countryCode"]} - ${r["name"]}`;
-        liTag.addEventListener("click", (e) => {
-          inputTeamB.value = e.target.innerText;
-          ulTagB.classList.remove("d-flex");
-          ulTagB.classList.remove("flex-column");
-          ulTagB.classList.remove("country-list");
-          ulTagB.innerHTML = "";
-          oldPointBElem.value = r["data"][0]["currentPoints"];
-        });
-        ulTagB.appendChild(liTag);
-      }
+  // Sort array countryList
+  countryList.sort((c1, c2) => {
+    if (c1.countryCode < c2.countryCode) {
+      return -1
+    } else if (c1.countryCode < c2.countryCode) {
+      return 1
     } else {
+      return 0
+    }
+  });
+
+  for (let r of countryList) {
+    let liTag = document.createElement("li");
+    liTag.innerText = `${r["countryCode"]} - ${r["name"]}`;
+    liTag.addEventListener("click", (e) => {
+      inputTeamB.innerText = e.target.innerText;
       ulTagB.classList.remove("d-flex");
       ulTagB.classList.remove("flex-column");
       ulTagB.classList.remove("country-list");
-      oldPointBElem.value = "";
-    }
-  } else if (e.key === "Enter" || e.target.value.length === 0) {
-    ulTagB.classList.remove("d-flex");
-    ulTagB.classList.remove("flex-column");
-    ulTagB.classList.remove("country-list");
-    ulTagB.innerHTML = "";
+      ulTagB.innerHTML = "";
+      oldPointBElem.value = r["data"][0]["currentPoints"];
+    });
+    ulTagB.appendChild(liTag);
   }
 });
 
