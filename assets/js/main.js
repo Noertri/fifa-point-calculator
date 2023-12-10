@@ -31,8 +31,12 @@ selectBtn.addEventListener("change", e => {
 let countryList = [];
 
 let getMenRanking = async () => {
-  let rawData = await fetch(
-    "http://127.0.0.1:5506/fifa-point-calculator/api/ranking/men?periode=2023-06-29"
+  let apiUrl = new URL("http://127.0.0.1:5506/fifa-point-calculator/api/ranking/men");
+  apiUrl.searchParams.append("periode", "2023-06-29");
+
+  let rawData = await fetch(apiUrl, {
+      "method": "GET"
+    }
   );
 
   let jsonData = await rawData.json();
