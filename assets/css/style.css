@@ -120,10 +120,12 @@ ul.country-list li:hover {
   width: 100%;
   height: 30px;
   padding: 2px 5px 2px 5px;
+  background-color: rgba(217, 210, 210, 0.823);
 }
 
 #match-categories option {
   font-size: 14px;
+  background-color: white;
 }
 
 .btn-wrapper {
