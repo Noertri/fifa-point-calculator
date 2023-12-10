@@ -21,7 +21,7 @@ let data = {
   pso: false
 };
 
-selectBtn.addEventListener("change", (e) => {
+selectBtn.addEventListener("change", e => {
   if (!e.target.disabled) {
     matchCoeffValue.innerText = `Koefisien pertandingan = ${e.target.value}`;
     data.matchCoeff = parseInt(e.target.value);
@@ -44,11 +44,10 @@ let getMenRanking = async () => {
 
 getMenRanking();
 
-
 let ulTagA = document.querySelector("ul.team-a");
 let ulTagB = document.querySelector("ul.team-b");
 
-inputTeamA.addEventListener("click", (e) => {
+inputTeamA.addEventListener("click", e => {
   e.stopPropagation();
 
   ulTagA.classList.toggle("d-flex");
@@ -58,19 +57,20 @@ inputTeamA.addEventListener("click", (e) => {
   // Sort array countryList
   countryList.sort((c1, c2) => {
     if (c1.countryCode < c2.countryCode) {
-      return -1
+      return -1;
     } else if (c1.countryCode < c2.countryCode) {
-      return 1
+      return 1;
     } else {
-      return 0
+      return 0;
     }
   });
 
   for (let r of countryList) {
     let liTag = document.createElement("li");
     liTag.innerText = `${r["countryCode"]} - ${r["name"]}`;
-    liTag.addEventListener("click", (e) => {
-      inputTeamA.innerText = e.target.innerText;
+    liTag.addEventListener("click", e => {
+      let span = inputTeamA.querySelector("span");
+      span.innerText = e.target.innerText;
       ulTagA.classList.remove("d-flex");
       ulTagA.classList.remove("flex-column");
       ulTagA.classList.remove("country-list");
@@ -81,7 +81,7 @@ inputTeamA.addEventListener("click", (e) => {
   }
 });
 
-inputTeamB.addEventListener("click", (e) => {
+inputTeamB.addEventListener("click", e => {
   e.stopPropagation();
 
   ulTagB.classList.toggle("d-flex");
@@ -91,19 +91,20 @@ inputTeamB.addEventListener("click", (e) => {
   // Sort array countryList
   countryList.sort((c1, c2) => {
     if (c1.countryCode < c2.countryCode) {
-      return -1
+      return -1;
     } else if (c1.countryCode < c2.countryCode) {
-      return 1
+      return 1;
     } else {
-      return 0
+      return 0;
     }
   });
 
   for (let r of countryList) {
     let liTag = document.createElement("li");
     liTag.innerText = `${r["countryCode"]} - ${r["name"]}`;
-    liTag.addEventListener("click", (e) => {
-      inputTeamB.innerText = e.target.innerText;
+    liTag.addEventListener("click", e => {
+      let span = inputTeamB.querySelector("span");
+      span.innerText = e.target.innerText;
       ulTagB.classList.remove("d-flex");
       ulTagB.classList.remove("flex-column");
       ulTagB.classList.remove("country-list");
@@ -114,7 +115,7 @@ inputTeamB.addEventListener("click", (e) => {
   }
 });
 
-document.addEventListener("click", (e) => {
+document.addEventListener("click", e => {
   let countryWrapper = document.querySelectorAll(".country-wrapper");
 
   if (!countryWrapper[0].contains(e.target)) {
@@ -127,8 +128,8 @@ document.addEventListener("click", (e) => {
 });
 
 // Hasil pertandingan
-matchResults.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
+matchResults.forEach(btn => {
+  btn.addEventListener("click", e => {
     if (e.target.checked) {
       data.matchResult = e.target.value;
     }
@@ -139,7 +140,7 @@ matchResults.forEach((btn) => {
 let addRule1 = document.getElementById("ko-round");
 let addRule2 = document.getElementById("pso-round");
 
-addRule1.addEventListener("click", (e) => {
+addRule1.addEventListener("click", e => {
   if (e.target.checked) {
     data.ko = Boolean(e.target.value);
   } else {
@@ -147,7 +148,7 @@ addRule1.addEventListener("click", (e) => {
   }
 });
 
-addRule2.addEventListener("click", (e) => {
+addRule2.addEventListener("click", e => {
   if (e.target.checked) {
     data.pso = Boolean(e.target.value);
   } else {
@@ -239,13 +240,13 @@ function calcPoints({
   return matchData;
 }
 
-submitBtn.addEventListener("click", (e) => {
+submitBtn.addEventListener("click", e => {
   if (oldPointAElem.value && oldPointBElem.value) {
     data.oldPointA = parseFloat(oldPointAElem.value);
     data.oldPointB = parseFloat(oldPointBElem.value);
   }
 
-  let {newPointA, newPointB, deltaA, deltaB} = calcPoints(data);
+  let { newPointA, newPointB, deltaA, deltaB } = calcPoints(data);
 
   let spanA = document.querySelector(".new-point.team-a");
   let spanB = document.querySelector(".new-point.team-b");
