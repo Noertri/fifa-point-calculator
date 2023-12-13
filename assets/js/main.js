@@ -32,7 +32,7 @@ let countryList = [];
 
 let getMenRanking = async () => {
   let apiUrl = new URL("http://127.0.0.1:5506/fifa-point-calculator/api/ranking/men");
-  apiUrl.searchParams.append("periode", "2023-06-29");
+  apiUrl.searchParams.append("periode", "2023-11-30");
 
   let rawData = await fetch(apiUrl, {
       "method": "GET"
@@ -71,7 +71,7 @@ inputTeamA.addEventListener("click", e => {
 
   for (let r of countryList) {
     let liTag = document.createElement("li");
-    liTag.innerText = `${r["countryCode"]} - ${r["name"]}`;
+    liTag.innerText = `${r["countryCode"]} - ${r["countryName"]}`;
     liTag.addEventListener("click", e => {
       let span = inputTeamA.querySelector("span");
       span.innerText = e.target.innerText;
@@ -79,7 +79,7 @@ inputTeamA.addEventListener("click", e => {
       ulTagA.classList.remove("flex-column");
       ulTagA.classList.remove("country-list");
       ulTagA.innerHTML = "";
-      oldPointAElem.value = r["data"][0]["currentPoints"];
+      oldPointAElem.value = r["data"]["currentPoints"];
     });
     ulTagA.appendChild(liTag);
   }
@@ -105,7 +105,7 @@ inputTeamB.addEventListener("click", e => {
 
   for (let r of countryList) {
     let liTag = document.createElement("li");
-    liTag.innerText = `${r["countryCode"]} - ${r["name"]}`;
+    liTag.innerText = `${r["countryCode"]} - ${r["countryName"]}`;
     liTag.addEventListener("click", e => {
       let span = inputTeamB.querySelector("span");
       span.innerText = e.target.innerText;
@@ -113,7 +113,7 @@ inputTeamB.addEventListener("click", e => {
       ulTagB.classList.remove("flex-column");
       ulTagB.classList.remove("country-list");
       ulTagB.innerHTML = "";
-      oldPointBElem.value = r["data"][0]["currentPoints"];
+      oldPointBElem.value = r["data"]["currentPoints"];
     });
     ulTagB.appendChild(liTag);
   }
