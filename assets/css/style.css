@@ -84,6 +84,7 @@ ul.country-list {
 ul.country-list li {
   padding: 3px 5px;
   cursor: pointer;
+  font-size: 12px;
 }
 
 ul.country-list li:hover {
